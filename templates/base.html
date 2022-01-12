@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% block head %}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://i.pinimg.com/originals/f1/62/38/f1623860fd8664ef92e60ab26d3edef7.png"
+        type="image/png" />
+
+    <!-- Map CSS -->
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css" />
+
+    <!-- Libs CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/libs.bundle.css') }}">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/theme.bundle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/master.css') }}" />
+
+    <!-- Font -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/ibm-plex-sans.min.css"> 
+
+    <!-- Title -->
+    <title>MasterSQL</title>
+</head>
+{% endblock %}
+
+<body>
+    {% block nav %}
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container-fluid">
+            <!-- Brand -->
+            <a class="navbar-brand lift" href="{{ url_for('home') }}">Master<strong>SQL</strong></a>
+
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <!-- Toggler -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fe fe-x"></i>
+                </button>
+
+                <!-- Navigation -->
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown shadow">
+                        <a class="nav-link dropdown-toggle" id="navbarChallenge" data-bs-toggle="dropdown" href="#"
+                            aria-haspopup="true" aria-expanded="false">
+                            Learn SQL
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarChallenge">
+                            <a class="dropdown-item lift" href="{{ url_for('sql_pages.createTableSQL') }}"> Create Table </a>
+                            <a class="dropdown-item lift" href="{{ url_for('sql_pages.dropTableSQL') }}"> Drop Table </a>
+                            <a class="dropdown-item lift" href="{{ url_for('sql_pages.insertDataSQL') }}"> Insert Data </a>
+                            <a class="dropdown-item lift" href="{{ url_for('sql_pages.selectDataSQL') }}"> Select Data </a>
+                            <a class="dropdown-item lift" href="{{ url_for('sql_pages.updateDataSQL') }}"> Update Data </a>
+                            <a class="dropdown-item lift" href="{{ url_for('sql_pages.deleteDataSQL') }}"> Delete Data </a>
+                            <a class="dropdown-item lift" href="{{ url_for('sql_pages.foreignKeysSQL') }}"> Foreign Keys </a>
+                            <a class="dropdown-item lift" href="{{ url_for('sql_pages.joinSQL') }}"> Join Tables </a>
+                            <a class="dropdown-item lift" href="{{ url_for('sql_pages.nestedQueriesSQL') }}"> Nested Queries </a>
+                            <a class="dropdown-item lift" href="{{ url_for('sql_pages.groupByHavingSQL') }}"> Grouping Rows </a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown shadow">
+                        <a class="nav-link dropdown-toggle" id="navbarChallenge" data-bs-toggle="dropdown" href="#"
+                            aria-haspopup="true" aria-expanded="false">
+                            Test my skills
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarChallenge">
+                            <a class="dropdown-item lift" href="{{ url_for('sql_pages.level1') }}"> Level 1 - Easy </a>
+                            <a class="dropdown-item lift" href="{{ url_for('sql_pages.level2') }}"> Level 2 - Intermediate </a>
+                            <a class="dropdown-item lift" href="{{ url_for('sql_pages.level3') }}"> Level 3 - Advanced </a>
+                        </div>
+                    </li>
+                    <li class="nav-item shadow lift"><a class="nav-link" href="{{ url_for('links') }}"> Links </a></li>
+                </ul>
+
+                <!-- Button -->
+                {% if userName != None %}
+                <a href="{{ url_for('my_pages.mypage') }}" class="btn btn-success btn-sm shadow lift me-1 ms-auto">My Page</a>
+                <a href="{{ url_for('signout') }}" class="btn btn-success btn-sm shadow lift"> Sign out </a>
+                {% else %}
+                <a href="{{ url_for('signin') }}" class="btn btn-success btn-sm shadow lift me-1 ms-auto">Sign in</a>
+                <a href="{{ url_for('signup') }}" class="btn btn-success btn-sm shadow lift"> Sign up </a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% block footer %}
+    <!-- FOOTER -->
+    <footer class="bg-success" style="margin-top: 10vh">
+        <br>
+        <h5 class="text-center text-white">
+            Copyright &copy; 2022 Young-jae Moon<br>All rights reserved.
+        </h5>
+        <br>
+    </footer>
+    {% endblock %}
+
+    {% block javascript %}
+    <!-- JAVASCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- Map JS -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js"></script>
+
+    <!-- Vendor JS -->
+    <script src="{{ url_for('static', filename='assets/js/vendor.bundle.js') }}"></script>
+
+    <!-- Theme JS -->
+    <script src="{{ url_for('static', filename='assets/js/theme.bundle.js') }}"></script>
+    {% endblock %}
+
+    {% block flash %}
+    <!-- Code for flashing messages -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <script type="text/javascript">
+        alert("{{messages[-1]}}");
+    </script>
+    {% endif %}
+    {% endwith %}
+    {% block body %}{% endblock %}
+    {% endblock %}
+</body>
+
+</html>

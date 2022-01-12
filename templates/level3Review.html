@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Import Orbit javascript library. For further info, check: https://docs.withorbit.com/ -->
+<script type="module" src="https://js.withorbit.com/orbit-web-component.js"></script>
+
+<!-- Page Content -->
+<section>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <!-- Card -->
+                <div class="card shadow">
+                    <!-- Collapse -->
+                    <div class="collapse d-md-block" id="sidenavCollapse">
+                        <div class="card-header">
+                            <!-- Heading -->
+                            <h4>SQL Tests</h4>
+                        </div>
+                        <div class="card-body">
+                            <!-- List -->
+                            <ul class="card-list list">
+                                <li class="list-item lift">
+                                    <a class="list-link text-reset" href="{{ url_for('sql_pages.level1') }}">
+                                        Level 1 - Easy
+                                    </a>
+                                </li>
+                                <li class="list-item lift">
+                                    <a class="list-link text-reset" href="{{ url_for('sql_pages.level2') }}">
+                                        Level 2 - Intermediate
+                                    </a>
+                                </li>
+                                <li class="list-item active lift">
+                                    <a class="list-link text-reset" href="{{ url_for('sql_pages.level3') }}">
+                                        Level 3 - Advanced
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <!-- Card -->
+                <div class="card shadow">
+                    <div class="card-header">
+                        <!-- Heading -->
+                        <h4>Review answers for the level 3 test through spaced repetition learning.</h4>
+                    </div>
+                    <div class="card-body">
+                        <!-- List group -->
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item">
+                                <orbit-reviewarea color='lime'>
+                                    <orbit-prompt question="Q1. Write a query to count the number of iPhone 13 Pro Max Cases being sold by each manufacturer from ‘iPhone13ProMaxCase’ table."
+                                        answer="SELECT manufacturer, COUNT(caseName) AS  Number_of_iPhone_13_Pro_Max_Cases FROM iPhone13ProMaxCase GROUP BY manufacturer;">
+                                    </orbit-prompt>
+                                    <orbit-prompt question="Q2. Write a query to select the manufacturers that sells two or more iPhone 13 Pro Max cases from ‘iPhone13ProMaxCase’ table."
+                                        answer="SELECT manufacturer FROM iPhone13ProMaxCase GROUP BY manufacturer HAVING COUNT(caseName) >= 2;">
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question="Q3. Write a query to select the manufacturers except Apple that sells two or more iPhone 13 Pro Max cases from ‘iPhone13ProMaxCase’ table."
+                                        answer="SELECT manufacturer FROM iPhone13ProMaxCase WHERE manufacturer <> 'Apple' GROUP BY manufacturer HAVING COUNT(caseName) >= 2;">
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question="Q4. Write a query to count the number of AirTag Cases being sold by each manufacturer that also sells cases for iPhone 13 Pro Max from ‘AirTagCase’ table."
+                                        answer="SELECT manufacturer, COUNT(caseName) AS  Number_of_AirTag_Cases FROM AirTagCase WHERE AirTagCase.manufacturer IN (SELECT manufacturer FROM iPhone13ProMaxCase) GROUP BY manufacturer;">
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question="Q5. Write a query to count the number of AirTag Cases being sold by each manufacturer that does not sell cases for iPhone 13 Pro Max from ‘AirTagCase’ table."
+                                        answer="SELECT manufacturer, COUNT(caseName) AS  Number_of_AirTag_Cases FROM AirTagCase WHERE AirTagCase.manufacturer NOT IN (SELECT manufacturer FROM iPhone13ProMaxCase) GROUP BY manufacturer;">
+                                    </orbit-prompt>
+                                </orbit-reviewarea>
+                                <div style="text-align:center;">
+                                    <a href="{{ url_for('sql_pages.level3') }}"><button class="btn btn-outline-danger btn-sm" type="button"> Back </button></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

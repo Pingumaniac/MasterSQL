@@ -1,0 +1,447 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Import Orbit javascript library. For further info, check: https://docs.withorbit.com/ -->
+<script type="module" src="https://js.withorbit.com/orbit-web-component.js"></script>
+
+<!-- Page Content -->
+<section>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <div class="card shadow">
+                    <!-- Collapse -->
+                    <div class="collapse d-md-block" id="sidenavCollapse">
+                        <div class="card-header">
+                            <h4>Sections</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="card-list list">
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.createTableSQL') }}">Create Table</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.dropTableSQL') }}">Drop Table</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.insertDataSQL') }}">Insert Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.selectDataSQL') }}">Select Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.updateDataSQL') }}">Update Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.deleteDataSQL') }}">Delete Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.foreignKeysSQL') }}">Foreign Keys</a></li>
+                                <li class="list-item active lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.joinSQL') }}">Joining Tables</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.nestedQueriesSQL') }}">Nested Queries</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.groupByHavingSQL') }}">Grouping Rows</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h4>How could two or more tables be joined to retreive data in SQL? </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item">
+                                <h5>There are four main types of JOIN in SQL:</h5>
+                                <ol>
+                                    <li>INNER JOIN</li>
+                                    <li>LEFT JOIN (or LEFT OUTER JOIN)</li>
+                                    <li>RIGHT JOIN (or RIGHT OUTER JOIN)</li>
+                                    <li>FULL JOIN (or FULL OUTER JOIN)</li>
+                                </ol>
+                                <br>
+                                <h5>Note that</h5>
+                                <ol>
+                                    <li>INNER JOIN returns the attributes from both tables that satisfy the matching
+                                        condition.</li>
+                                    <li>LEFT JOIN returns all the attributes from the LEFT table and all the attributes
+                                        for the RIGHT table, which satisfies the matching condition given. If the
+                                        matching condition from the RIGHT table is not satisfied, then null will be
+                                        returned for the value(s) of the attribute(s) from the RIGHT table.
+                                    </li>
+                                    <li>RIGHT JOIN returns all the attributes from the RIGHT table and all the
+                                        attributes for the LEFT table, which satisfies the matching condition given. If
+                                        the matching condition from the LEFT table is not satisfied, then null will be
+                                        returned for the value(s) of the attribute(s) from the LEFT table.
+                                    </li>
+                                    <li>FULL JOIN returns all the attributes from both sides. If the matching condition
+                                        from any table is not satisfied, then null will be returned for the
+                                        corresponding attribute(s).</li>
+                                    <li>MySQL does not support FULL JOIN. The results from LEFT JOIN and RIGHT JOIN
+                                        shall be united using the 'UNION' clause to join the table fully.</li>
+                                </ol>
+                                <br>
+                                <h5>To join two or more tables in SQL for retrieving data from them, you need to write a query in the following format:</h5>
+                                <br>
+                                <h5 class="bg-light"> SELECT (write the table name and their attributes that you want to select as
+                                    Table_name.column_name) FROM Original_Table
+                                    (write the join clause that you want to use here) Table_to_be_joined ON (Write the
+                                    condition here)
+                                </h5>
+                                <br>
+                                <h5>For instance, assume that there are two tables, DBMS and HCI, containing the
+                                    student IDs, names, and final grades of the students who took
+                                    Database Management Systems (DBMS) and Human-Computer Interaction (HCI),
+                                    respectively.</h5>
+                                <br>
+                                <strong>
+                                    <p>Table name: DBMS</p>
+                                </strong>
+                                <br>
+                                <table class="table small table-striped table-success"">
+                                    <thead>
+                                        <tr>
+                                            <th scope=" col">#</th>
+                                            <th scope="col">StudentID</th>
+                                            <th scope="col">StudentName</th>
+                                            <th scope="col">Grade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>1001</td>
+                                            <td>Aaron</td>
+                                            <td>A+</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>1002</td>
+                                            <td>Bash</td>
+                                            <td>A</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>1003</td>
+                                            <td>Claire</td>
+                                            <td>A-</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>1004</td>
+                                            <td>Darwin</td>
+                                            <td>B+</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>1005</td>
+                                            <td>Euler</td>
+                                            <td>B</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <strong>
+                                    <p>Table name: HCI</p>
+                                </strong>
+                                <br>
+                                <table class="table small table-striped table-success"">
+                                    <thead>
+                                        <tr>
+                                            <th scope=" col">#</th>
+                                            <th scope="col">StudentID</th>
+                                            <th scope="col">StudentName</th>
+                                            <th scope="col">Grade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>1001</td>
+                                            <td>Aaron</td>
+                                            <td>A</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>1002</td>
+                                            <td>Bash</td>
+                                            <td>A-</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>1003</td>
+                                            <td>Claire</td>
+                                            <td>A+</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>1006</td>
+                                            <td>Fortran</td>
+                                            <td>C+</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>1007</td>
+                                            <td>Haskell</td>
+                                            <td>F</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h5>To select the student IDs and the names of students, the grades for the students who
+                                    took both courses, we can execute the following query:</h5>
+                                <br>
+                                <h5 class="bg-light">SELECT DBMS.StudentID AS StudentID, DBMS.StudentName AS StudentName, DBMS.Grade,
+                                    HCI.Grade FROM DBMS INNER JOIN HCI ON DBMS.StudentID = HCI.StudentID;</h5>
+                                <br>
+                                <h5>The following table will be outputted.</h5>
+                                <br>
+                                <table class="table small table-striped table-success"">
+                                    <thead>
+                                        <tr>
+                                            <th scope=" col">#</th>
+                                    <th scope="col">StudentID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">DBMS.Grade</th>
+                                    <th scope="col">HCI.Grade</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>1001</td>
+                                            <td>Aaron</td>
+                                            <td>A+</td>
+                                            <td>A</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>1002</td>
+                                            <td>Bash</td>
+                                            <td>A</td>
+                                            <td>A-</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>1003</td>
+                                            <td>Claire</td>
+                                            <td>A-</td>
+                                            <td>A+</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <h5>If we use LEFT JOIN instead of INNER JOIN in the query above, the following table
+                                    will be outputted instead:</h5>
+                                <br>
+                                <table class="table small table-striped table-success"">
+                                    <thead>
+                                        <tr>
+                                            <th scope=" col">#</th>
+                                            <th scope="col">StudentID</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">DBMS_Grade</th>
+                                            <th scope="col">HCI_Grade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>1001</td>
+                                            <td>Aaron</td>
+                                            <td>A+</td>
+                                            <td>A</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>1002</td>
+                                            <td>Bash</td>
+                                            <td>A</td>
+                                            <td>A-</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>1003</td>
+                                            <td>Claire</td>
+                                            <td>A-</td>
+                                            <td>A+</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>1004</td>
+                                            <td>Darwin</td>
+                                            <td>B+</td>
+                                            <td>null</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>1005</td>
+                                            <td>Euler</td>
+                                            <td>B</td>
+                                            <td>null</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <h5>If we execute the following query with RIGHT JOIN:</h5>
+                                <br>
+                                <h5 class="bg-light">SELECT HCI.StudentID AS StudentID, HCI.StudentName AS StudentName, DBMS.Grade AS
+                                    DBMS_Grade, HCI.Grade AS HCI_Grade FROM DBMS RIGHT JOIN HCI ON DBMS.StudentID =
+                                    HCI.StudentID;</h5>
+                                <br>
+                                <h5>Then, the following table will be outputted.</h5>
+                                <br>
+                                <table class="table small table-striped table-success"">
+                                    <thead>
+                                        <tr>
+                                            <th scope=" col">#</th>
+                                            <th scope="col">StudentID</th>
+                                            <th scope="col">StudentName</th>
+                                            <th scope="col">DBMS_Grade</th>
+                                            <th scope="col">HCI_Grade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>1001</td>
+                                            <td>Aaron</td>
+                                            <td>A+</td>
+                                            <td>A</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>1002</td>
+                                            <td>Bash</td>
+                                            <td>A</td>
+                                            <td>A-</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>1003</td>
+                                            <td>Claire</td>
+                                            <td>A-</td>
+                                            <td>A+</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>1006</td>
+                                            <td>Fortran</td>
+                                            <td>null</td>
+                                            <td>C+</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>1007</td>
+                                            <td>Haskell</td>
+                                            <td>null</td>
+                                            <td>F</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <h5>We can also unite the results from LEFT JOIN and the results from RIGHT JOIN to create 
+                                    the same effect as FULL JOIN in MySQL as follows:</h5>
+                                <br>
+                                <h5 class="bg-light">SELECT DBMS.StudentID AS StudentID, DBMS.StudentName AS StudentName, DBMS.Grade,
+                                    HCI.Grade FROM DBMS LEFT JOIN HCI ON DBMS.StudentID = HCI.StudentID
+                                    <br>
+                                    UNION
+                                    <br>
+                                    SELECT HCI.StudentID AS StudentID, HCI.StudentName AS StudentName, DBMS.Grade AS
+                                    DBMS_Grade, HCI.Grade AS HCI_Grade FROM DBMS RIGHT JOIN HCI ON DBMS.StudentID =
+                                    HCI.StudentID;
+                                </h5>
+                                <br>
+                                <h5>Then, the following table will be outputted instead:</h5>
+                                <br>
+                                <table class="table small table-striped table-success"">
+                                    <thead>
+                                        <tr>
+                                            <th scope=" col">#</th>
+                                            <th scope="col">StudentID</th>
+                                            <th scope="col">StudentName</th>
+                                            <th scope="col">DBMS_Grade</th>
+                                            <th scope="col">HCI_Grade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>1001</td>
+                                            <td>Aaron</td>
+                                            <td>A+</td>
+                                            <td>A</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>1002</td>
+                                            <td>Bash</td>
+                                            <td>A</td>
+                                            <td>A-</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>1003</td>
+                                            <td>Claire</td>
+                                            <td>A-</td>
+                                            <td>A+</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>1004</td>
+                                            <td>Darwin</td>
+                                            <td>B+</td>
+                                            <td>null</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>1005</td>
+                                            <td>Euler</td>
+                                            <td>B</td>
+                                            <td>null</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">6</th>
+                                            <td>1006</td>
+                                            <td>Fortran</td>
+                                            <td>null</td>
+                                            <td>C+</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">7</th>
+                                            <td>1007</td>
+                                            <td>Haskell</td>
+                                            <td>null</td>
+                                            <td>F</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="list-group-item">
+                                <div style="text-align:center;">
+                                    <orbit-reviewarea color="lime">
+                                        <orbit-prompt question="Q1. What are the four main types of JOINs used in SQL?"
+                                            answer="INNER JOIN, LEFT (OUTER) JOIN, RIGHT (OUTER) JOIN, FULL (OUTER) JOIN.">
+                                        </orbit-prompt>
+                                    </orbit-reviewarea>
+                                    <hr>
+                                    <a href="{{ url_for('sql_pages.foreignKeysSQL') }}">
+                                        <button class="btn btn-outline-danger lift btn-xs" style="float:left" type="button">
+                                            <<
+                                        </button>
+                                    </a>
+                                    <a href="{{ url_for('sql_pages.nestedQueriesSQL') }}">
+                                        <button class="btn btn-outline-success lift btn-xs" style="float:right" type="button"> 
+                                             >> 
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Import Orbit javascript library. For further info, check: https://docs.withorbit.com/ -->
+<script type="module" src="https://js.withorbit.com/orbit-web-component.js"></script>
+
+<!-- Page Content -->
+<section>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <!-- Card -->
+                <div class="card shadow">
+                    <!-- Collapse -->
+                    <div class="collapse d-md-block" id="sidenavCollapse">
+                        <div class="card-header">
+                            <!-- Heading -->
+                            <h4>SQL Tests</h4>
+                        </div>
+                        <div class="card-body">
+                            <!-- List -->
+                            <ul class="card-list list">
+                                <li class="list-item lift">
+                                    <a class="list-link text-reset" href="{{ url_for('sql_pages.level1') }}">
+                                        Level 1 - Easy
+                                    </a>
+                                </li>
+                                <li class="list-item active lift">
+                                    <a class="list-link text-reset" href="{{ url_for('sql_pages.level2') }}">
+                                        Level 2 - Intermediate
+                                    </a>
+                                </li>
+                                <li class="list-item lift">
+                                    <a class="list-link text-reset" href="{{ url_for('sql_pages.level3') }}">
+                                        Level 3 - Advanced
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <!-- Card -->
+                <div class="card shadow">
+                    <div class="card-header">
+                        <!-- Heading -->
+                        <h4>Review answers for the level 2 test through spaced repetition learning.</h4>
+                    </div>
+                    <div class="card-body">
+                        <!-- List group -->
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item">
+                                <orbit-reviewarea color='lime'>
+                                    <orbit-prompt question="Q1. Write a query to select the student ID, name, Mathematics.GPA as Math_GPA, English.GPA as English_GPA of the students who took both Mathematics and English."
+                                        answer="SELECT Mathematics.StudentID, Mathematics.StudentName, Mathematics.GPA AS Math_GPA, English.GPA AS English_GPA FROM Mathematics INNER JOIN English ON Mathematics.StudentID = English.StudentID;">
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question="Q2. Write a query to select the student ID, name, Mathematics_GPA as Math_GPA, English_GPA as English.GPA of the students who took Mathematics using LEFT JOIN."
+                                        answer="SELECT Mathematics.StudentID, Mathematics.StudentName, Mathematics.GPA AS Math_GPA, English.GPA AS English_GPA FROM Mathematics LEFT JOIN English ON Mathematics.StudentID = English.StudentID;">
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question="Q3. Write a query to select the student ID, name, Mathematics_GPA as Math_GPA, English.GPA as English_GPA of the students who took English using RIGHT JOIN."
+                                        answer="SELECT English.StudentID, English.StudentName, Mathematics.GPA AS Math_GPA, English.GPA AS English_GPA FROM Mathematics RIGHT JOIN English ON Mathematics.StudentID = English.StudentID;"></orbit-prompt>
+                                    <orbit-prompt question="Q4. Write a query to select the student ID, name, Mathematics.GPA as Math_GPA, English.GPA AS English.GPA of the students who took either Mathematics and English using LEFT JOIN, RIGHT JOIN, and UNION."
+                                        answer="(SELECT Mathematics.StudentID, Mathematics.StudentName, Mathematics.GPA AS Math_GPA, English.GPA AS English_GPA FROM Mathematics LEFT JOIN English ON Mathematics.StudentID = English.StudentID)
+                                        UNION
+                                        (SELECT English.StudentID, English.StudentName, Mathematics.GPA AS Math_GPA, English.GPA AS English_GPA FROM Mathematics RIGHT JOIN English ON Mathematics.StudentID = English.StudentID);">
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question='Q5. Write a query to select the average mathematics GPA of the students who took both Mathematics and English. Label the column as "average_gpa".'
+                                        answer='SELECT AVG(GPA) AS "average_gpa" FROM Mathematics WHERE StudentID IN (SELECT StudentID FROM English);'>
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question='Q6. Write a query to select the average English GPA of the students who did not take English. Label the column as "average_gpa".'
+                                        answer='SELECT AVG(GPA) AS "average_gpa" FROM Mathematics WHERE StudentID NOT IN (SELECT StudentID FROM English);'>
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question='Q7. Write a query to select the highest mathematics GPA of the students who took both Mathematics and English. Label the column as "highest_gpa".'
+                                        answer='SELECT MAX(GPA) AS "highest_gpa"  FROM Mathematics WHERE StudentID IN (SELECT StudentID FROM English);'>
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question='Q8. Write a query to select the lowest mathematics GPA of the students who took both Mathematics and English. Label the column as "lowest_gpa".'
+                                        answer='SELECT MIN(GPA) AS "lowest_gpa"  FROM Mathematics WHERE StudentID IN (SELECT StudentID FROM English);'>
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question='Q9. Write a query to select the highest mathematics GPA of the students who did not take English. Label the column as "highest_gpa".'
+                                        answer='SELECT MAX(GPA) AS "highest_gpa" FROM Mathematics WHERE StudentID NOT IN (SELECT StudentID FROM English);'>
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question='Q10. Write a query to select the lowest mathematics GPA of the students who did not take English. Label the column as "lowest_gpa".'
+                                        answer='SELECT MIN(GPA) AS "lowest_gpa" FROM Mathematics WHERE StudentID NOT IN (SELECT StudentID FROM English);'>
+                                    </orbit-prompt>
+                                </orbit-reviewarea>
+                                <div style="text-align:center;">
+                                    <a href="{{ url_for('sql_pages.level2') }}"><button class="btn btn-outline-danger btn-sm" type="button"> Back </button></a>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

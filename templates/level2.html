@@ -1,0 +1,552 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Page Content -->
+<section>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <!-- Card -->
+                <div class="card shadow">
+                    <!-- Collapse -->
+                    <div class="collapse d-md-block" id="sidenavCollapse">
+                        <div class="card-header">
+                            <!-- Heading -->
+                            <h4>SQL Tests</h4>
+                        </div>
+                        <div class="card-body">
+                            <!-- List -->
+                            <ul class="card-list list">
+                                <li class="list-item lift">
+                                    <a class="list-link text-reset" href="{{ url_for('sql_pages.level1') }}">
+                                        Level 1 - Easy
+                                    </a>
+                                </li>
+                                <li class="list-item active lift">
+                                    <a class="list-link text-reset" href="{{ url_for('sql_pages.level2') }}">
+                                        Level 2 - Intermediate
+                                    </a>
+                                </li>
+                                <li class="list-item lift">
+                                    <a class="list-link text-reset" href="{{ url_for('sql_pages.level3') }}">
+                                        Level 3 - Advanced
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <!-- Card -->
+                <div class="card shadow">
+                    <div class="card-header">
+                        <!-- Heading -->
+                        <h4>Total 10 questions, 10 points maximum</h4>
+                    </div>
+                    <div class="card-body">
+                        <!-- List group -->
+                        <div class="list-group list-group-flush">
+                            <h5><strong>For questions 1-10, please refer to the following two tables.</strong></h5>
+                            <br>
+                            <h5><strong>Table name: Mathematics</strong></h5>
+                            <br>
+                            <table class="table small table-striped table-success">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">StudentID</th>
+                                        <th scope="col">StudentName</th>
+                                        <th scope="col">GPA</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>101</td>
+                                        <td>Socrates</td>
+                                        <td>2.33</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>102</td>
+                                        <td>Plato</td>
+                                        <td>4.33</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>103</td>
+                                        <td>Aristotle</td>
+                                        <td>4.33</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">4</th>
+                                        <td>104</td>
+                                        <td>Cicero</td>
+                                        <td>3.33</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">5</th>
+                                        <td>105</td>
+                                        <td>Descrates</td>
+                                        <td>4.33</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                            <h5><strong>Table name: English</strong></h5>
+                            <br>
+                            <table class="table small table-striped table-success">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">StudentID</th>
+                                        <th scope="col">StudentName</th>
+                                        <th scope="col">GPA</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>101</td>
+                                        <td>Socrates</td>
+                                        <td>1.67</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>102</td>
+                                        <td>Plato</td>
+                                        <td>1.67</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>103</td>
+                                        <td>Aristotle</td>
+                                        <td>2</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">4</th>
+                                        <td>106</td>
+                                        <td>Spinoza</td>
+                                        <td>4.33</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">5</th>
+                                        <td>107</td>
+                                        <td>Kant</td>
+                                        <td>4</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="list-group-item" id="part1">
+                                <h5>Q1. Write a query to select the student ID, name, Mathematics.GPA as Math_GPA, English.GPA as English_GPA of the students who took both Mathematics and English.</h5>
+                                <table class="table small table-striped" id="answer1-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">StudentID</th>
+                                            <th scope="col">StudentName</th>
+                                            <th scope="col">Math_GPA</th>
+                                            <th scope="col">English_GPA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>101</td>
+                                            <td>Socrates</td>
+                                            <td>2.33</td>
+                                            <td>1.67</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>102</td>
+                                            <td>Plato</td>
+                                            <td>4.33</td>
+                                            <td>1.67</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>103</td>
+                                            <td>Aristotle</td>
+                                            <td>4.33</td>
+                                            <td>2</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="text" class="form-control" name="q1" id="q1" 
+                                placeholder="Please write your answer for Q1 here." />
+                                <br>
+                                <h5 name="a1" id="a1" style="visibility: hidden;">
+                                    Correct Answer: SELECT Mathematics.StudentID, Mathematics.StudentName, Mathematics.GPA AS Math_GPA, English.GPA AS English_GPA FROM Mathematics INNER JOIN English ON Mathematics.StudentID = English.StudentID;
+                                </h5>
+                            </div>
+                            <div class="list-group-item" id="part2">
+                                <h5>Q2. Write a query to select the student ID, name, Mathematics_GPA as Math_GPA, English_GPA as English.GPA of the students who took Mathematics using LEFT JOIN.</h5>
+                                <table class="table small table-striped" id="answer2-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">StudentID</th>
+                                            <th scope="col">StudentName</th>
+                                            <th scope="col">Math_GPA</th>
+                                            <th scope="col">English_GPA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>101</td>
+                                            <td>Socrates</td>
+                                            <td>2.33</td>
+                                            <td>1.67</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>102</td>
+                                            <td>Plato</td>
+                                            <td>4.33</td>
+                                            <td>1.67</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>103</td>
+                                            <td>Aristotle</td>
+                                            <td>4.33</td>
+                                            <td>2</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>104</td>
+                                            <td>Cicero</td>
+                                            <td>3.33</td>
+                                            <td>NULL</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>105</td>
+                                            <td>Descrates</td>
+                                            <td>4.33</td>
+                                            <td>NULL</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="text" class="form-control" name="q2" id="q2" 
+                                placeholder="Please write your answer for Q2 here." />
+                                <br>
+                                <h5 name="a2" id="a2" style="visibility: hidden;">
+                                    Correct Answer: SELECT Mathematics.StudentID, Mathematics.StudentName, Mathematics.GPA AS Math_GPA, English.GPA AS English_GPA FROM Mathematics LEFT JOIN English ON Mathematics.StudentID = English.StudentID;
+                                </h5>
+                            </div>
+                            <div class="list-group-item" id="part3">
+                                <h5>Q3. Write a query to select the student ID, name, Mathematics_GPA as Math_GPA, English.GPA as English_GPA of the students who took English using RIGHT JOIN.</h5>
+                                <table class="table small table-striped" id="answer3-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">StudentID</th>
+                                            <th scope="col">StudentName</th>
+                                            <th scope="col">Math_GPA</th>
+                                            <th scope="col">English_GPA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>101</td>
+                                            <td>Socrates</td>
+                                            <td>2.33</td>
+                                            <td>1.67</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>102</td>
+                                            <td>Plato</td>
+                                            <td>4.33</td>
+                                            <td>1.67</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>103</td>
+                                            <td>Aristotle</td>
+                                            <td>4.33</td>
+                                            <td>2</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>106</td>
+                                            <td>Spinoza</td>
+                                            <td>NULL</td>
+                                            <td>4.33</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>107</td>
+                                            <td>Kant</td>
+                                            <td>NULL</td>
+                                            <td>4</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="text" class="form-control" name="q3" id="q3" 
+                                placeholder="Please write your answer for Q3 here." />
+                                <br>
+                                <h5 name="a3" id="a3" style="visibility: hidden;">
+                                    Correct Answer: SELECT English.StudentID, English.StudentName, Mathematics.GPA AS Math_GPA, English.GPA AS English_GPA FROM Mathematics RIGHT JOIN English ON Mathematics.StudentID = English.StudentID;
+                                </h5>
+                            </div>
+                            <div class="list-group-item" id="part4">
+                                <h5>Q4. Write a query to select the student ID, name, Mathematics.GPA as Math_GPA, English.GPA AS English.GPA of the students who took either Mathematics and English using LEFT JOIN, RIGHT JOIN, and UNION.</h5>
+                                <table class="table small table-striped" id="answer4-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">StudentID</th>
+                                            <th scope="col">StudentName</th>
+                                            <th scope="col">Math_GPA</th>
+                                            <th scope="col">English_GPA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>101</td>
+                                            <td>Socrates</td>
+                                            <td>2.33</td>
+                                            <td>1.67</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>102</td>
+                                            <td>Plato</td>
+                                            <td>4.33</td>
+                                            <td>1.67</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>103</td>
+                                            <td>Aristotle</td>
+                                            <td>4.33</td>
+                                            <td>2</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>104</td>
+                                            <td>Cicero</td>
+                                            <td>3.33</td>
+                                            <td>NULL</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>105</td>
+                                            <td>Descrates</td>
+                                            <td>4.33</td>
+                                            <td>NULL</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">6</th>
+                                            <td>106</td>
+                                            <td>Spinoza</td>
+                                            <td>NULL</td>
+                                            <td>4.33</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">7</th>
+                                            <td>107</td>
+                                            <td>Kant</td>
+                                            <td>NULL</td>
+                                            <td>4</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="text" class="form-control" name="q4" id="q4" 
+                                placeholder="Please write your answer for Q4 here." />
+                                <br>
+                                <h5 name="a4" id="a4" style="visibility: hidden;">
+                                    Correct Answer: (SELECT Mathematics.StudentID, Mathematics.StudentName, Mathematics.GPA AS Math_GPA, English.GPA AS English_GPA FROM Mathematics LEFT JOIN English ON Mathematics.StudentID = English.StudentID) 
+                                    <br>
+                                    UNION 
+                                    <br>
+                                    (SELECT English.StudentID, English.StudentName, Mathematics.GPA AS Math_GPA, English.GPA AS English_GPA FROM Mathematics RIGHT JOIN English ON Mathematics.StudentID = English.StudentID);
+                                </h5>
+                            </div>
+                            <div class="list-group-item" id="part5">
+                                <h5>Q5. Write a query to select the average mathematics GPA of the students who took both Mathematics and English. 
+                                    Label the column as "average_gpa".
+                                </h5>
+                                <table class="table small table-striped" id="answer5-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">average_gpa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>3.663333257039388</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="text" class="form-control" name="q5" id="q5" 
+                                placeholder="Please write your answer for Q5 here." />
+                                <br>
+                                <h5 name="a5" id="a5" style="visibility: hidden;">
+                                    Correct Answer: SELECT AVG(GPA) AS "average_gpa" FROM Mathematics WHERE StudentID IN (SELECT StudentID FROM English);
+                                </h5>
+                            </div>
+                            <div class="list-group-item" id="part6">
+                                <h5>Q6. Write a query to select the average English GPA of the students who did not take English. 
+                                    Label the column as "average_gpa".
+                                </h5>
+                                <table class="table small table-striped" id="answer6-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">average_gpa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>3.8299999237060547</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="text" class="form-control" name="q6" id="q6" 
+                                placeholder="Please write your answer for Q6 here." />
+                                <br>
+                                <h5 name="a6" id="a6" style="visibility: hidden;">
+                                    Correct Answer: SELECT AVG(GPA) AS "average_gpa" FROM Mathematics WHERE StudentID NOT IN (SELECT StudentID FROM English);
+                                </h5>
+                            </div>
+                            <div class="list-group-item" id="part7">
+                                <h5>Q7. Write a query to select the highest mathematics GPA of the students who took both Mathematics and English. 
+                                    Label the column as "highest_gpa".
+                                </h5>
+                                <table class="table small table-striped" id="answer7-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">highest_gpa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>4.33</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="text" class="form-control" name="q7" id="q7" 
+                                placeholder="Please write your answer for Q7 here." />
+                                <br>
+                                <h5 name="a7" id="a7" style="visibility: hidden;">
+                                    Correct Answer: SELECT MAX(GPA) AS "highest_gpa" FROM Mathematics WHERE StudentID IN (SELECT StudentID FROM English);
+                                </h5>
+                            </div>
+                            <div class="list-group-item" id="part8">
+                                <h5>Q8. Write a query to select the lowest mathematics GPA of the students who took both Mathematics and English. 
+                                    Label the column as "lowest_gpa".
+                                </h5>
+                                <table class="table small table-striped" id="answer8-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">lowest_gpa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>2.33</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="text" class="form-control" name="q8" id="q8" 
+                                placeholder="Please write your answer for Q8 here." />
+                                <br>
+                                <h5 name="a8" id="a8" style="visibility: hidden;">
+                                    Correct Answer: SELECT MIN(GPA) AS "minimum_gpa" FROM Mathematics WHERE StudentID IN (SELECT StudentID FROM English);
+                                </h5>
+                            </div>
+                            <div class="list-group-item" id="part9">
+                                <h5>Q9. Write a query to select the highest mathematics GPA of the students who did not take English. 
+                                    Label the column as "highest_gpa".
+                                </h5>
+                                <table class="table small table-striped" id="answer9-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">highest_gpa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>4.33</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="text" class="form-control" name="q9" id="q9" 
+                                placeholder="Please write your answer for Q9 here." />
+                                <br>
+                                <h5 name="a9" id="a9" style="visibility: hidden;">
+                                    Correct Answer: SELECT MAX(GPA) AS "highest_gpa" FROM Mathematics WHERE StudentID NOT IN (SELECT StudentID FROM English);
+                                </h5>
+                            </div>
+                            <div class="list-group-item" id="part10">
+                                <h5>Q10. Write a query to select the lowest mathematics GPA of the students who did not take English. 
+                                    Label the column as "lowest_gpa".
+                                </h5>
+                                <table class="table small table-striped" id="answer10-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">lowest_gpa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>3.33</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="text" class="form-control" name="q10" id="q10" 
+                                placeholder="Please write your answer for Q10 here." />
+                                <br>
+                                <h5 name="a10" id="a10" style="visibility: hidden;">
+                                    Correct Answer: SELECT MIN(GPA) AS "lowest_gpa" FROM Mathematics WHERE StudentID NOT IN (SELECT StudentID FROM English);
+                                </h5>
+                            </div>
+                            <div class="form-group text-center">
+                                <br>
+                                <!-- Reset -->
+                                <button class="btn btn-outline-danger btn-xs lift" type="button" id="resetButton" style="visibility:hidden"> 
+                                    Reset 
+                                </button>
+                                <!-- Submit -->
+                                <button class="btn btn-outline-primary btn-xs lift" type="button" id="submitButton"> 
+                                    Submit 
+                                </button>
+                                <!-- Review -->
+                                <a href="{{ url_for('sql_pages.level1Review') }}">
+                                    <button class="btn btn-outline-success btn-xs lift" type="button" id="reviewButton" style="visibility:hidden"> 
+                                        Review 
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Javascript code for level 2 -->
+<script src="{{ url_for('static', filename='assets/js/level2.js') }}"></script>
+{% endblock %}

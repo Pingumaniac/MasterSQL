@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Import Orbit javascript library. For further info, check: https://docs.withorbit.com/ -->
+<script type="module" src="https://js.withorbit.com/orbit-web-component.js"></script>
+
+<!-- Page Content -->
+<section>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <div class="card shadow">
+                    <!-- Collapse -->
+                    <div class="collapse d-md-block" id="sidenavCollapse">
+                        <div class="card-header">
+                            <h4>Sections</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="card-list list">
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.createTableSQL') }}">Create Table</a></li>
+                                <li class="list-item active lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.dropTableSQL') }}">Drop Table</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.insertDataSQL') }}">Insert Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.selectDataSQL') }}">Select Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.updateDataSQL') }}">Update Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.deleteDataSQL') }}">Delete Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.foreignKeysSQL') }}">Foreign Keys</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.joinSQL') }}">Joining Tables</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.nestedQueriesSQL') }}">Nested Queries</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.groupByHavingSQL') }}">Grouping Rows</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h4>How could tables be dropped in SQL?</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item">
+                                <h5>Dropping a table from a database in SQL is much simpler than creating a table in the
+                                    database in SQL.</h5>
+                                <br>
+                                <h5>You need to write a query in the following format:</h5>
+                                <br>
+                                <h5 class="bg-light">DROP TABLE (Write the table name here);</h5>
+                                <br>
+                                <h5>An example query to drop a table named 'Duty' would be:</h5>
+                                <br>
+                                <h5 class="bg-light">DROP TABLE Duty;</h5>
+                            </div>
+                            <div class="list-group-item">
+                                <orbit-reviewarea color="lime">
+                                    <orbit-prompt question="Q1. Write a query to drop a table named 'Burden'."
+                                        answer="DROP TABLE Burden;">
+                                    </orbit-prompt>
+                                </orbit-reviewarea>
+                                <hr>
+                                <a href="{{ url_for('sql_pages.createTableSQL') }}">
+                                    <button class="btn btn-outline-danger lift btn-xs" style="float:left" type="button">
+                                        <<
+                                    </button>
+                                </a>
+                                <a href="{{ url_for('sql_pages.insertDataSQL') }}">
+                                    <button class="btn btn-outline-success lift btn-xs" style="float:right" type="button"> 
+                                        >> 
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

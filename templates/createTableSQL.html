@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Import Orbit javascript library. For further info, check: https://docs.withorbit.com/ -->
+<script type="module" src="https://js.withorbit.com/orbit-web-component.js"></script>
+
+<!-- Page Content -->
+<section>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <div class="card shadow">
+                    <!-- Collapse -->
+                    <div class="collapse d-md-block" id="sidenavCollapse">
+                        <div class="card-header">
+                            <h4>Sections</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="card-list list">
+                                <li class="list-item active lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.createTableSQL') }}">Create Table</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.dropTableSQL') }}">Drop Table</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.insertDataSQL') }}">Insert Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.selectDataSQL') }}">Select Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.updateDataSQL') }}">Update Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.deleteDataSQL') }}">Delete Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.foreignKeysSQL') }}">Foreign Keys</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.joinSQL') }}">Joining Tables</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.nestedQueriesSQL') }}">Nested Queries</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.groupByHavingSQL') }}">Grouping Rows</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h4>How could tables be created in SQL?</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item">
+                                <h5>These are the things that shall be considered when creating a table (relation):</h5>
+                                <br>
+                                <ol>
+                                    <li>Name of the table (relation)</li>
+                                    <li>Name and the data types of the attributes that the table shall have. Please
+                                        check out the following <a href="https://www.w3schools.com/sql/sql_datatypes.asp"
+                                        class="text-success">link</a> to see the list and descriptions for each data type 
+                                        for 
+                                        <ul>
+                                            <li>MySQL</li>
+                                            <li>SQL Server</li>
+                                            <li>MS Access</li>
+                                        </ul>
+                                    </li>
+                                    <li>Constraints for each attribute. Examples include: 
+                                        <ul>
+                                            <li>NOT NULL</li>
+                                            <li>Unique</li>
+                                            <li>Unsigned</li>
+                                            <li>Zerofill</li>
+                                        </ul>
+                                    </li>
+                                    <li>The primary key(s) of the table</li>
+                                </ol>
+                                <br>
+                                <h5>Note: What is a primary key?</h5>
+                                <br>
+                                <p>A primary key is an attribute or a collection of attributes that uniquely identifies
+                                    each record stored in a table.</p>
+                            </div>
+                            <div class="list-group-item">
+                                <h5>You can create a table in the following format:</h5>
+                                <br>
+                                <h5 class="bg-light">CREATE TABLE (Write the table name here) (
+                                    <br>
+                                    (Name of the attribute) (type of the attribtute) (write the constraint for this
+                                    attribute if necessary),
+                                    <br>
+                                    PRIMARY KEY (list the attributes used for the primary key)
+                                    <br>
+                                    );
+                                </h5>
+                                <br>
+                                <h5>The following is an example query for creating a table:</h5>
+                                <br>
+                                <h5 class="bg-light">CREATE TABLE TutorialTable (
+                                    <br>
+                                    NameOfTutorial VARCHAR(256) NOT NULL,
+                                    <br>
+                                    Author VARCHAR(256) NOT NULL,
+                                    <br>
+                                    DateCreated TIMESTAMP NOT NULL,
+                                    <br>
+                                    PRIMARY KEY (NameOfTutorial)
+                                    <br>
+                                    );
+                                </h5>
+                                <br>
+                                <h5>You can also use multiple attributes as the primary key for the table:</h5>
+                                <br>
+                                <h5 class="bg-light">CREATE TABLE TutorialTable (
+                                    <br>
+                                    NameOfTutorial VARCHAR(256) NOT NULL,
+                                    <br>
+                                    Type VARCHAR(256) NOT NULL,
+                                    <br>
+                                    Author VARCHAR(256) NOT NULL,
+                                    <br>
+                                    DateCreated TIMESTAMP NOT NULL,
+                                    <br>
+                                    PRIMARY KEY (NameOfTutorial, Type)
+                                    <br>
+                                    );
+                                </h5>
+                            </div>
+                            <div class="list-group-item">
+                                <h5>You can also create a table if the table does not exist yet in the database.</h5>
+                                <br>
+                                <h5 class="bg-light">CREATE TABLE (Write the table name here) IF NOT EXISTS (
+                                    <br>
+                                    (Name of the attribute) (type of the attribtute) (write the constraint for this
+                                    attribute if necessary),
+                                    <br>
+                                    PRIMARY KEY (list the attributes used for the primary key)
+                                    <br>
+                                    );
+                                </h5>
+                                <br>
+                                <h5>The following is an example query for creating a table:</h5>
+                                <br>
+                                <h5 class="bg-light">CREATE TABLE TutorialTable IF NOT EXISTS (
+                                    <br>
+                                    NameOfTutorial VARCHAR(256) NOT NULL,
+                                    <br>
+                                    Author VARCHAR(256) NOT NULL,
+                                    <br>
+                                    DateCreated TIMESTAMP NOT NULL,
+                                    <br>
+                                    PRIMARY KEY (NameOfTutorial)
+                                    <br>
+                                    );
+                                </h5>
+                            </div>
+                            <div class="list-group-item">
+                                <orbit-reviewarea color="lime">
+                                    <orbit-prompt
+                                        question="Q1. What are the five things that you shall consider when creating a table (relation)?"
+                                        answer="Name of the table, name and the data type for each attributes in the table, constraints for each attribute, primary key of the table (schema).">
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question="Q2. What shall you add in the query when you want to create a table if and only if it does not exist in the database?"
+                                        answer="IF NOT EXISTS">
+                                    </orbit-prompt>
+                                    <orbit-prompt question="Q3. What is a primary key?"
+                                        answer="A primary key is an attribute or a collection of attributes that uniquely identifies each record stored in a table.">
+                                    </orbit-prompt>
+                                </orbit-reviewarea>
+                                <hr>
+                                <div style="text-align:center;">
+                                    <a href="{{ url_for('sql_pages.dropTableSQL') }}">
+                                        <button class="btn btn-outline-success lift btn-xs" type="button"> 
+                                            >> 
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

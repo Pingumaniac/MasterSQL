@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Page Content -->
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <div class="row">
+    <div class="container">
+    <div class="card shadow">
+      <div class="card-header">
+        <h2 class="display-2 text-center">About Master<strong>SQL</strong></h2>
+      </div>
+      <div class="card-body">
+        <div class="list-group-flush">
+          <div class="list-group-item" id="summary">
+            <h3>Summary</h3>
+            <br>
+            <h5>Personal project for educational software development</h5>
+          </div>
+          <div class="list-group-item" id="aboutMembers">
+            <h3>About Members</h3>
+            <br>
+            <h5>Name: Young-jae Moon</h5>
+            <ul>
+              <li>Visiting student at Stony Brook University (Fall 2021 - Spring 2022).</li>
+              <li>
+                <address>Email: <a href="mailto:youngjae.moon@stonybrook.edu"
+                    class="text-success">youngjae.moon@stonybrook.edu</a>
+                </address>
+              </li>
+            </ul>
+          </div>
+          <div class="list-group-item" id="aboutAdvisors">
+            <h3>About Advisors</h3>
+            <br>
+            <h5>Name: Professor Alexander Kuhn</h5>
+            <ul>
+              <li>Teaching Assistant Professor in Computer Science at SUNY Korea.</li>
+            </ul>
+          </div>
+          <div class="list-group-item" id="problem">
+            <h3>What problem does Master<strong>SQL</strong> aim to solve?</h3>
+            <br>
+            <h5>One of the advantages of employing a relational database is that people can write complex queries in
+              Structured Query Language (SQL) skillfully. Writing complex queries make the overall code more
+              efficient and make software development faster. Nonetheless, many people find it hard to write
+              complex queries when dealing with relational database management systems (RDBMS). Hence they import
+              object-relational mapping (ORM) libraries, such as SQLAlchemy and Sequelize, so that they can handle
+              the database only through simple queries. But ORM may likely provide poor abstractions of the
+              database, be slower than directly executing SQL queries and complex queries especially. In other words,
+              the use of ORM libraries reduce the major advantage that RDBMS has over the others: it is easy to write
+              and
+              execute complex queries in the RDBMS.
+            </h5>
+          </div>
+          <div class="list-group-item" id="solution">
+            <h3>How does Master<strong>SQL</strong> trying to solve this problem?</h3>
+            <br>
+            <h5>“MasterSQL” is a web-based application that helps people to learn and practice writing MySQL queries.
+              The users can learn SQL concepts through reading materials for each section, ensure that they have learnt
+              the
+              concepts properly through space repetition learning. Orbit library has been used for each page of the
+              learning
+              materials and the review section for each test. And through signing up the Orbit library, the users will
+              be
+              able to recall what they have learnt skillfully.
+            </h5>
+          </div>
+          <div class="list-group-item" id="technologies">
+            <h3>Tools and technologies</h3>
+            <br>
+            <h5>Programming languages and Database Management System (DBMS) used:</h5>
+            <ol>
+              <li class="lift">JavaScript (ECMAScript 2021)</li>
+              <li class="lift">MySQL (MySQL Community Edition 8.0.27)</li>
+              <li class="lift">Python (v3.10.1)</li>
+            </ol>
+            <br>
+            <h5>Frameworks used:</h5>
+            <ol>
+              <li class="lift">Bootstrap front-end framework (v5.0.2)</li>
+              <li class="lift">Flask framework (v2.0.2)</li>
+            </ol>
+            <br>
+            <h5>Python libraries and 3rd party packages used:</h5>
+            <ol>
+              <li class="lift">Flask-Bootstrap (v3.3.7.1)</li>
+              <li class="lift">gunicorn (v20.1.0)</li>
+              <li class="lift">PyMySQL (v1.0.2)</li>
+              <li class="lift">WerkZeug (v1.0.1)</li>
+            </ol>
+            <br>
+            <h5>External Storage used:</h5>
+            <ol>
+              <li class="lift">Amazon Relational Database Service (RDS)</li>
+            </ol>
+          </div>
+          <div class="list-group-item" id="bugTracking">
+            <h3>Bug tracking</h3>
+            <br>
+            <h5>All users can view and report a bug in "GitHub Issues" of
+              <a href="https://github.com/Pingumaniac/MasterSQL/issues" class="text-success">our
+                repository</a>.
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

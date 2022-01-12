@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Page Content -->
+<section>
+  <div class="container">
+    <br>
+    <br>
+    <br>
+    <div class="row">
+      <div class="container">
+        <div class="card shadow">
+          <div class="card-header">
+            <h4>Update profile picture</h4>
+          </div>
+          <div class="card-body">
+            <form method="POST" , action="{{ url_for('my_pages.changeProfilePicture') }}">
+              <div class="list-group list-group-flush">
+                <div class="list-group-item">
+                  <p>URL of your new profile picture:</p>
+                  <input type="url" class="form-control" name="newProfile" id="newProfile"
+                    placeholder="Enter the photo URL">
+                  <br />
+                  <br />
+                  <p>Confirm with your current password:</p>
+                  <input type="password" class="form-control" name="currentPassword" id="currentPassword"
+                    placeholder="Enter your current password">
+                  <br />
+                  <button style="float: right; margin-left: 5px" type="submit"
+                    class="btn btn-outline-success btn-sm lift">Submit</button>
+                  <a href="{{ url_for('my_pages.mypage') }}"><button style="float: right" type="button"
+                      class="btn btn-outline-danger btn-sm lift">Cancel</button></a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <br>
+        <h5 class="small text-gray-700" style="float:right;">
+          If you do not want to use MasterSQL anymore, you may
+          <a class="text-danger" href="{{ url_for('my_pages.deleteAccount') }}">delete your account permanently</a>.
+        </h5>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

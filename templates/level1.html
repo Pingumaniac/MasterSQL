@@ -1,0 +1,609 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Page Content -->
+<section>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <!-- Card -->
+                <div class="card shadow">
+                    <!-- Collapse -->
+                    <div class="collapse d-md-block" id="sidenavCollapse">
+                        <div class="card-header">
+                            <!-- Heading -->
+                            <h4>SQL Tests</h4>
+                        </div>
+                        <div class="card-body">
+                            <!-- List -->
+                            <ul class="card-list list">
+                                <li class="list-item active lift">
+                                    <a class="list-link text-reset" href="{{ url_for('sql_pages.level1') }}">
+                                        Level 1 - Easy
+                                    </a>
+                                </li>
+                                <li class="list-item lift">
+                                    <a class="list-link text-reset" href="{{ url_for('sql_pages.level2') }}">
+                                        Level 2 - Intermediate
+                                    </a>
+                                </li>
+                                <li class="list-item lift">
+                                    <a class="list-link text-reset" href="{{ url_for('sql_pages.level3') }}">
+                                        Level 3 - Advanced
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <!-- Card -->
+                <div class="card shadow">
+                    <div class="card-header">
+                        <!-- Heading -->
+                        <h4>Total 10 questions, 10 points maximum</h4>
+                    </div>
+                    <div class="card-body">
+                        <!-- List group -->
+                        <div class="list-group list-group-flush">
+                            <h5><strong>For questions 1-2 please refer to the following table.</strong></h5>
+                            <br>
+                            <h5><strong>Table name: Apple_M_Series</strong></h5>
+                            <br>
+                            <table class="table small table-striped table-success" id="answer1-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">chipName</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>M1</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>M1 Max</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>M1 Pro</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="list-group-item" id="part1">
+                                <h5>Q1. Write a query to select all from the table – Apple_M_Series.</h5>
+                                <table class="table small table-striped" id="answer1-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">chipName</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>M1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>M1 Max</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>M1 Pro</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="text" class="form-control" name="q1" id="q1"
+                                    placeholder="Please write your answer for Q1 here." />
+                                <br>
+                                <h5 name="a1" id="a1" style="visibility: hidden;">
+                                    Correct Answer: SELECT * FROM Apple_M_Series;
+                                </h5>
+                            </div>
+                            <div class="list-group-item" id="part2">
+                                <h5>Q2. Write a query to count the number of chips stored in Apple_M_Series. Label the
+                                    column as "No_of_Apple_M_Series".</h5>
+                                <table class="table small table-striped" id="answer2-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">No_of_Apple_M_Series</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>3</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="text" class="form-control" name="q2" id="q2"
+                                    placeholder="Please write your answer for Q2 here." />
+                                <br>
+                                <h5 name="a2" id="a2" style="visibility: hidden;">
+                                    Correct Answer: SELECT COUNT(*) AS No_of_Apple_M_Series FROM Apple_M_Series;
+                                </h5>
+                            </div>
+                            <div class="list-group-item">
+                                <h5><strong>For questions 3-10 please refer to the following table.</strong></h5>
+                                <br>
+                                <h5><strong>Table name: MacBookPro</strong></h5>
+                                <br>
+                                <table class="table small table-striped table-success">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">modelName</th>
+                                            <th scope="col">chipName</th>
+                                            <th scope="col">SSD</th>
+                                            <th scope="col">price</th>
+                                            <th scope="col">hasNotch</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>MacBook Pro 13</td>
+                                            <td>M1</td>
+                                            <td>256</td>
+                                            <td>1299</td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>MacBook Pro 13</td>
+                                            <td>M1</td>
+                                            <td>512</td>
+                                            <td>1499</td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>MacBook Pro 14</td>
+                                            <td>M1 Pro</td>
+                                            <td>512</td>
+                                            <td>1999</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>MacBook Pro 14</td>
+                                            <td>M1 Pro</td>
+                                            <td>1024</td>
+                                            <td>2499</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>MacBook Pro 16</td>
+                                            <td>M1 Max</td>
+                                            <td>1024</td>
+                                            <td>3499</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">6</th>
+                                            <td>MacBook Pro 16</td>
+                                            <td>M1 Pro</td>
+                                            <td>512</td>
+                                            <td>2499</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">7</th>
+                                            <td>MacBook Pro 16</td>
+                                            <td>M1 Pro</td>
+                                            <td>1024</td>
+                                            <td>2699</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="list-group-item" id="part3">
+                                <h5>Q3. Write a query to select modelName, chipName, SSD, and price from the –
+                                    MacBookPro – in which the value of hasNotch attribute is 1.</h5>
+                                <table class="table small table-striped" id="answer3-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">modelName</th>
+                                            <th scope="col">chipName</th>
+                                            <th scope="col">SSD</th>
+                                            <th scope="col">price</th>
+                                            <th scope="col">hasNotch</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>MacBook Pro 14</td>
+                                            <td>M1 Pro</td>
+                                            <td>512</td>
+                                            <td>1999</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>MacBook Pro 14</td>
+                                            <td>M1 Pro</td>
+                                            <td>1024</td>
+                                            <td>2499</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>MacBook Pro 16</td>
+                                            <td>M1 Max</td>
+                                            <td>1024</td>
+                                            <td>3499</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>MacBook Pro 16</td>
+                                            <td>M1 Pro</td>
+                                            <td>512</td>
+                                            <td>2499</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>MacBook Pro 16</td>
+                                            <td>M1 Pro</td>
+                                            <td>1024</td>
+                                            <td>2699</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="text" class="form-control" name="q3" id="q3"
+                                    placeholder="Please write your answer for Q3 here." />
+                                <br>
+                                <h5 name="a3" id="a3" style="visibility: hidden;">
+                                    Correct Answer: SELECT modelName, chipName, SSD, price FROM MacBookPro WHERE
+                                    hasNotch = 1;
+                                </h5>
+                            </div>
+                            <div class="list-group-item" id="part4">
+                                <h5>Q4. Write a query to select modelName, chipName, SSD, and price from the –
+                                    MacBookPro – in which the value of hasNotch attribute is not 1.</h5>
+                                <table class="table small table-striped" id="answer4-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">modelName</th>
+                                            <th scope="col">chipName</th>
+                                            <th scope="col">SSD</th>
+                                            <th scope="col">price</th>
+                                            <th scope="col">hasNotch</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>MacBook Pro 13</td>
+                                            <td>M1</td>
+                                            <td>256</td>
+                                            <td>1299</td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>MacBook Pro 13</td>
+                                            <td>M1</td>
+                                            <td>512</td>
+                                            <td>1499</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="text" class="form-control" name="q4" id="q4"
+                                    placeholder="Please write your answer for Q4 here." />
+                                <br>
+                                <h5 name="a4" id="a4" style="visibility: hidden;">
+                                    Correct Answer: SELECT modelName, chipName, SSD, price FROM MacBookPro WHERE NOT
+                                    hasNotch = 1;
+                                </h5>
+                            </div>
+                            <div class="list-group-item" id="part5">
+                                <h5>Q5. Write a query to select all from the table – MacBookPro – in the descending
+                                    order of price.</h5>
+                                <table class="table small table-striped" id="answer5-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">modelName</th>
+                                            <th scope="col">chipName</th>
+                                            <th scope="col">SSD</th>
+                                            <th scope="col">price</th>
+                                            <th scope="col">hasNotch</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>MacBook Pro 16</td>
+                                            <td>M1 Max</td>
+                                            <td>1024</td>
+                                            <td>3499</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>MacBook Pro 16</td>
+                                            <td>M1 Pro</td>
+                                            <td>1024</td>
+                                            <td>2699</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>MacBook Pro 14</td>
+                                            <td>M1 Pro</td>
+                                            <td>1024</td>
+                                            <td>2499</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>MacBook Pro 16</td>
+                                            <td>M1 Pro</td>
+                                            <td>512</td>
+                                            <td>2499</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>MacBook Pro 14</td>
+                                            <td>M1 Pro</td>
+                                            <td>512</td>
+                                            <td>1999</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">6</th>
+                                            <td>MacBook Pro 13</td>
+                                            <td>M1</td>
+                                            <td>512</td>
+                                            <td>1499</td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">7</th>
+                                            <td>MacBook Pro 13</td>
+                                            <td>M1</td>
+                                            <td>256</td>
+                                            <td>1299</td>
+                                            <td>0</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="text" class="form-control" name="q5" id="q5"
+                                    placeholder="Please write your answer for Q5 here." />
+                                <br>
+                                <h5 name="a5" id="a5" style="visibility: hidden;">
+                                    Correct Answer: SELECT * FROM MacBookPro ORDER BY price DESC;
+                                </h5>
+                            </div>
+                            <div class="list-group-item" id="part6">
+                                <h5>Q6. Write a query to select all from the table – MacBookPro – in the ascending order
+                                    of price.</h5>
+                                <table class="table small table-striped" id="answer6-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">modelName</th>
+                                            <th scope="col">chipName</th>
+                                            <th scope="col">SSD</th>
+                                            <th scope="col">price</th>
+                                            <th scope="col">hasNotch</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>MacBook Pro 13</td>
+                                            <td>M1</td>
+                                            <td>256</td>
+                                            <td>1299</td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>MacBook Pro 13</td>
+                                            <td>M1</td>
+                                            <td>512</td>
+                                            <td>1499</td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>MacBook Pro 14</td>
+                                            <td>M1 Pro</td>
+                                            <td>512</td>
+                                            <td>1999</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>MacBook Pro 14</td>
+                                            <td>M1 Pro</td>
+                                            <td>1024</td>
+                                            <td>2499</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>MacBook Pro 16</td>
+                                            <td>M1 Pro</td>
+                                            <td>512</td>
+                                            <td>2499</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">6</th>
+                                            <td>MacBook Pro 16</td>
+                                            <td>M1 Pro</td>
+                                            <td>1024</td>
+                                            <td>2699</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">7</th>
+                                            <td>MacBook Pro 16</td>
+                                            <td>M1 Max</td>
+                                            <td>1024</td>
+                                            <td>3499</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="text" class="form-control" name="q6" id="q6"
+                                    placeholder="Please write your answer for Q6 here." />
+                                <br>
+                                <h5 name="a6" id="a6" style="visibility: hidden;">
+                                    Correct Answer: SELECT * FROM MacBookPro ORDER BY price ASC;
+                                </h5>
+                            </div>
+                            <div class="list-group-item" id="part7">
+                                <h5>Q7. Write a query to count the number of MacBook Pro models in which Apple is
+                                    currently selling from the table – MacBookPro.
+                                    Label the column as "No_of_MacBook_Pro".
+                                </h5>
+                                <table class="table small table-striped" id="answer7-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">No_of_MacBook_Pro</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>7</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="text" class="form-control" name="q7" id="q7"
+                                    placeholder="Please write your answer for Q7 here." />
+                                <br>
+                                <h5 name="a7" id="a7" style="visibility: hidden;">
+                                    Correct Answer: SELECT COUNT(*) AS "No_of_MacBook_Pro" FROM MacBookPro;
+                                </h5>
+                            </div>
+                            <div class="list-group-item" id="part8">
+                                <h5>Q8. Write a query to find the maximum price of a MacBook Pro in which Apple is
+                                    currently selling from the table – MacBookPro.
+                                    Label the column as "maximum_price".
+                                </h5>
+                                <table class="table small table-striped" id="answer8-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">maximum_price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>3499</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="text" class="form-control" name="q8" id="q8"
+                                    placeholder="Please write your answer for Q8 here." />
+                                <br>
+                                <h5 name="a8" id="a8" style="visibility: hidden;">
+                                    Correct Answer: SELECT MAX(price) AS "maximum_price" FROM MacBookPro;
+                                </h5>
+                            </div>
+                            <div class="list-group-item" id="part9">
+                                <h5>Q9. Write a query to find the minimum price of a MacBook Pro in which Apple is
+                                    currently selling from the table – MacBookPro.
+                                    Label the column as "minimum_price".
+                                </h5>
+                                <table class="table small table-striped" id="answer9-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">minimum_price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>1299</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="text" class="form-control" name="q9" id="q9"
+                                    placeholder="Please write your answer for Q9 here." />
+                                <br>
+                                <h5 name="a9" id="a9" style="visibility: hidden;">
+                                    Correct Answer: SELECT MIN(price) FROM MacBookPro;
+                                </h5>
+                            </div>
+                            <div class="list-group-item" id="part10">
+                                <h5>Q10. Write a query to find the minimum of "MacBook Pro 16" models in which Apple is
+                                    currently selling from the table – MacBookPro.
+                                    Label the column as "minimum_price".
+                                </h5>
+                                <table class="table small table-striped" id="answer10-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">minimum_price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>2499</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <input type="text" class="form-control" name="q10" id="q10"
+                                    placeholder="Please write your answer for Q10 here." />
+                                <br>
+                                <h5 name="a10" id="a10" style="visibility: hidden;">
+                                    Correct Answer: SELECT MIN(price) AS "minimum_price" FROM MacBookPro WHERE modelName
+                                    = "MacBook Pro 16";
+                                </h5>
+                            </div>
+                            <div class="form-group text-center">
+                                <br>
+                                <!-- Reset -->
+                                <button class="btn btn-outline-danger btn-xs lift" type="button" id="resetButton"
+                                    style="visibility:hidden">
+                                    Reset
+                                </button>
+                                <!-- Submit -->
+                                <button class="btn btn-outline-primary btn-xs lift" type="button" id="submitButton">
+                                    Submit
+                                </button>
+                                <!-- Review -->
+                                <a href="{{ url_for('sql_pages.level1Review') }}">
+                                    <button class="btn btn-outline-success btn-xs lift" type="button" id="reviewButton"
+                                        style="visibility:hidden">
+                                        Review
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Javascript code for level 1 -->
+<script src="{{ url_for('static', filename='assets/js/level1.js') }}"></script>
+{% endblock %}

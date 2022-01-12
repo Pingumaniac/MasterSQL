@@ -1,0 +1,304 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Import Orbit javascript library. For further info, check: https://docs.withorbit.com/ -->
+<script type="module" src="https://js.withorbit.com/orbit-web-component.js"></script>
+
+<!-- Page Content -->
+<section>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <div class="card shadow">
+                    <div class="collapse d-md-block" id="sidenavCollapse">
+                        <div class="card-header">
+                            <h4>Sections</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="card-list list">
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.createTableSQL') }}">Create Table</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.dropTableSQL') }}">Drop Table</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.insertDataSQL') }}">Insert Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.selectDataSQL') }}">Select Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.updateDataSQL') }}">Update Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.deleteDataSQL') }}">Delete Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.foreignKeysSQL') }}">Foreign Keys</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.joinSQL') }}">Joining Tables</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.nestedQueriesSQL') }}">Nested Queries</a></li>
+                                <li class="list-item active lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.groupByHavingSQL') }}">Grouping Rows</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h4>How could we group rows to select data?</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item">
+                                <h5>Assume that there is a table named 'ElectricCars' that stores the electric car's
+                                    name and its manufacturer.</h5>
+                                <br>
+                                <table class="table small table-striped table-success"">
+                                    <thead>
+                                        <tr>
+                                            <th scope=" col">#</th>
+                                            <th scope="col">carName</th>
+                                            <th scope="col">Manufacturer</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Cybertruck</td>
+                                            <td>Tesla</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>e-tron</td>
+                                            <td>Audi</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>e-tron GT</td>
+                                            <td>Audi</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>EQA</td>
+                                            <td>Mercedes-Benz</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>EQB</td>
+                                            <td>Mercedes-Benz</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">6</th>
+                                            <td>EQC</td>
+                                            <td>Mercedes-Benz</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">7</th>
+                                            <td>EQE</td>
+                                            <td>Mercedes-Benz</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">8</th>
+                                            <td>EQS</td>
+                                            <td>Mercedes-Benz</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">9</th>
+                                            <td>iX</td>
+                                            <td>BMW</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">10</th>
+                                            <td>iX3</td>
+                                            <td>BMW</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">11</th>
+                                            <td>Model 3</td>
+                                            <td>Tesla</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">12</th>
+                                            <td>Model S</td>
+                                            <td>Tesla</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">13</th>
+                                            <td>Model X</td>
+                                            <td>Tesla</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">14</th>
+                                            <td>Model Y</td>
+                                            <td>Tesla</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">15</th>
+                                            <td>Mustang Mach-E</td>
+                                            <td>Ford</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">16</th>
+                                            <td>Q4 e-tron</td>
+                                            <td>Audi</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">17</th>
+                                            <td>Q4 Sportback e-tron</td>
+                                            <td>Q4 e-tron</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">18</th>
+                                            <td>Roadster</td>
+                                            <td>Tesla</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h5>To retrieve the number of electric cars being sold by each manufacturer, we can use
+                                    the "GROUP BY" statement to group the rows in terms of manufacturers.
+                                    Then, we shall count the number of cars sold by each manufacturer, and then select
+                                    the name and the number of cars that each manufacturer sells in the following
+                                    manner:</h5>
+                                <br>
+                                <h5 class="bg-light">SELECT manufacturer, COUNT(carName) AS no_of_electic_cars_on_sale
+                                    FROM ElectricCars GROUP BY manufacturer;</h5>
+                                <br>
+                                <h5>Executing this query will output the following table:</h5>
+                                <br>
+                                <table class="table small table-striped table-success"">
+                                    <thead>
+                                        <tr>
+                                            <th scope=" col">#</th>
+                                            <th scope="col">manufacturer</th>
+                                            <th scope="col">no_of_electic_cars_on_sale</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Tesla</td>
+                                            <td>6</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Audi</td>
+                                            <td>4</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>Mercedes-Benz</td>
+                                            <td>5</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>BMW</td>
+                                            <td>2</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>Ford</td>
+                                            <td>1</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h5>Now, to retrieve the name of manufacturers that sell three or more cars, we can use
+                                    the "HAVING" clause to write the query in the following way:</h5>
+                                <br>
+                                <h5 class="bg-light">SELECT manufacturer FROM ElectricCars GROUP BY manufacturer HAVING
+                                    COUNT(carName) >= 3;</h5>
+                                <br>
+                                <h5>Executing this query will output the following table:</h5>
+                                <br>
+                                <table class="table small table-striped table-success"">
+                                    <thead>
+                                        <tr>
+                                            <th scope=" col">#</th>
+                                            <th scope="col">manufacturer</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Tesla</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Audi</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>Mercedes-Benz</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h5>Now, to retrieve the name of manufacturers that sell three or more cars except
+                                    Tesla, we can use both the "WHERE" clause and the "HAVING" clause.</h5>
+                                <ul>
+                                    <li class="bg-light">SELECT manufacturer FROM ElectricCars WHERE manufacturer <>
+                                            'TESLA' GROUP BY manufacturer HAVING COUNT(carName) >= 3;</li>
+                                    <li class="bg-light">SELECT manufacturer FROM ElectricCars GROUP BY manufacturer
+                                        HAVING COUNT(carName) >= 3 AND manufacturer <> 'TESLA' ;</li>
+                                </ul>
+                                <h5>Executing any of these queries will output the following table:</h5>
+                                <br>
+                                <table class="table small table-striped table-success"">
+                                    <thead>
+                                        <tr>
+                                            <th scope=" col">#</th>
+                                            <th scope="col">manufacturer</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Audi</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Mercedes-Benz</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h5>Notice that the "WHERE" clause does not support conditions that consist of
+                                    aggregate functions such as MIN(), MAX(), COUNT(), AVG() and SUM().
+                                    Thus, the "WHERE" clause shall be used before the "GROUP BY" statement.</h5>
+                                <br>
+                                <h5>By contrast, the "HAVING" clause supports aggregate functions and shall be used
+                                    after the "GROUP BY" statement.</h5>
+                            </div>
+                            <div class="list-group-item">
+                                <orbit-reviewarea color="lime">
+                                    <orbit-prompt
+                                        question='Q1. The "WHERE" clause supports aggregate functions. True or False?'
+                                        answer="False.">
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question='Q2. The "HAVING" clause does not support aggregate functions. True or False?'
+                                        answer="False.">
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question='Q3. The "WHERE" clause shall be used after the "GROUP BY" statement. True or False?'
+                                        answer="False.">
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question='Q4. The "HAVING" clause shall be used before the "GROUP BY" statement. True or False?'
+                                        answer="False.">
+                                    </orbit-prompt>
+                                </orbit-reviewarea>
+                                <hr>
+                                <div style="text-align:center;">
+                                    <a href="{{ url_for('sql_pages.nestedQueriesSQL') }}">
+                                        <button class="btn btn-outline-danger btn-xs" type="button">
+                                            << </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

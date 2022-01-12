@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Import Orbit javascript library. For further info, check: https://docs.withorbit.com/ -->
+<script type="module" src="https://js.withorbit.com/orbit-web-component.js"></script>
+
+<!-- Page Content -->
+<section>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <!-- Card -->
+                <div class="card shadow">
+                    <!-- Collapse -->
+                    <div class="collapse d-md-block" id="sidenavCollapse">
+                        <div class="card-header">
+                            <!-- Heading -->
+                            <h4>SQL Tests</h4>
+                        </div>
+                        <div class="card-body">
+                            <!-- List -->
+                            <ul class="card-list list">
+                                <li class="list-item active lift">
+                                    <a class="list-link text-reset" href="{{ url_for('sql_pages.level1') }}">
+                                        Level 1 - Easy
+                                    </a>
+                                </li>
+                                <li class="list-item lift">
+                                    <a class="list-link text-reset" href="{{ url_for('sql_pages.level2') }}">
+                                        Level 2 - Intermediate
+                                    </a>
+                                </li>
+                                <li class="list-item lift">
+                                    <a class="list-link text-reset" href="{{ url_for('sql_pages.level3') }}">
+                                        Level 3 - Advanced
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <!-- Card -->
+                <div class="card shadow">
+                    <div class="card-header">
+                        <!-- Heading -->
+                        <h4>Review answers for the level 1 test through spaced repetition learning.</h4>
+                    </div>
+                    <div class="card-body">
+                        <!-- List group -->
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item">
+                                <orbit-reviewarea color="lime">
+                                    <orbit-prompt question="Q1. Write a query to select all from the table – Apple_M_Series."
+                                        answer="SELECT * FROM Apple_M_Series;">
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question='Q2. Write a query to check whether there exists a chip named ‘M2’  in Apple_M_Series table. Label the column as "Existence_of_M2".'
+                                        answer="SELECT COUNT(*) AS No_of_Apple_M_Series FROM Apple_M_Series;"></orbit-prompt>
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question="Q3. Write a query to select modelName, chipName, SSD, and price from the – MacBookPro – in which the value of hasNotch attribute is 1."
+                                        answer="SELECT modelName, chipName, SSD, price FROM MacBookPro WHERE hasNotch = 1;">
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question="Q4. Write a query to select modelName, chipName, SSD, and price from the – MacBookPro – in which the value of hasNotch attribute is not 1."
+                                        answer="SELECT modelName, chipName, SSD, price FROM MacBookPro WHERE NOT hasNotch = 1;">
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question="Q5. Write a query to select all from the table  – MacBookPro – in the descending order of price."
+                                        answer="SELECT * FROM MacBookPro ORDER BY price DESC;">
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question="Q6. Write a query to select all from the table – MacBookPro – in the ascending order of price."
+                                        answer="SELECT * FROM MacBookPro ORDER BY price ASC;">
+                                    </orbit-prompt>
+                                    <orbit-prompt question='Q7. Write a query to count the number of MacBook Pro models in which Apple is currently selling from the table – MacBookPro. Label the column as "No_of_MacBook_Pro".'
+                                        answer='SELECT COUNT(*) AS "No_of_MacBook_Pro" FROM MacBookPro;'>
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question='Q8. Write a query to find the maximum price of a MacBook Pro in which Apple is currently selling from the table – MacBookPro. Label the column as "maximum_price".'
+                                        answer='SELECT MAX(price) AS "naximum_price" FROM MacBookPro;'>
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question='Q9. Write a query to find the minimum price of a MacBook Pro in which Apple is currently selling from the table – MacBookPro. Label the column as "minimum_price".'
+                                        answer='SELECT MIN(price) AS "minimum_price" FROM MacBookPro;'>
+                                    </orbit-prompt>
+                                    <orbit-prompt
+                                        question='Q10. Write a query to find the minimum price of "MacBook Pro 16" models in which Apple is currently selling from the table – MacBookPro. Label the column as "minimum_price".'
+                                        answer='SELECT MIN(price) AS "minimum_price" FROM MacBookPro WHERE modelName = "MacBook Pro 16";'>
+                                    </orbit-prompt>
+                                </orbit-reviewarea>
+                                <div style="text-align:center;">
+                                    <a href="{{ url_for('sql_pages.level1') }}"><button class="btn btn-outline-danger btn-sm" type="button"> Back </button></a>
+                                </div>      
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Import Orbit javascript library. For further info, check: https://docs.withorbit.com/ -->
+<script type="module" src="https://js.withorbit.com/orbit-web-component.js"></script>
+
+<!-- Page Content -->
+<section>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <div class="card shadow">
+                    <!-- Collapse -->
+                    <div class="collapse d-md-block" id="sidenavCollapse">
+                        <div class="card-header">
+                            <h4>Sections</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="card-list list">
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.createTableSQL') }}">Create Table</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.dropTableSQL') }}">Drop Table</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.insertDataSQL') }}">Insert Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.selectDataSQL') }}">Select Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.updateDataSQL') }}">Update Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.deleteDataSQL') }}">Delete Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.foreignKeysSQL') }}">Foreign Keys</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.joinSQL') }}">Joining Tables</a></li>
+                                <li class="list-item active lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.nestedQueriesSQL') }}">Nested Queries</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.groupByHavingSQL') }}">Grouping Rows</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h4>How could we nest two or more queries in SQL?</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item">
+                                <h5>A nested query consists of one main query with one or more sub-queries. The output
+                                    of the sub-queries is used to retrieve the output of the main query.</h5>
+                                <br>
+                                <h5>We can write a nested query in either the following format:</h5>
+                                <br>
+                                <ol>
+                                    <li class="bg-light">SELECT (list of columns) FROM (name of first table) WHERE
+                                        (column) IN (SELECT (column) FROM (name of second table) WHERE (condition);</li>
+                                    <li class="bg-light">SELECT (list of columns) FROM (name of first table) WHERE
+                                        (column) NOT IN (SELECT (column) FROM (name of second table) WHERE (condition);
+                                    </li>
+                                </ol>
+                                <br>
+                                <h5>Using DBMS and HCI tables from the previous page as an example,</h5>
+                                <br>
+                                <h5><strong>Table name: DBMS</strong></h5>
+                                <br>
+                                <table class="table small table-striped table-success">
+                                    <thead>
+                                        <tr>
+                                            <th scope=" col">#</th>
+                                            <th scope="col">StudentID</th>
+                                            <th scope="col">StudentName</th>
+                                            <th scope="col">Grade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>1001</td>
+                                            <td>Aaron</td>
+                                            <td>A+</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>1002</td>
+                                            <td>Bash</td>
+                                            <td>A</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>1003</td>
+                                            <td>Claire</td>
+                                            <td>A-</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>1004</td>
+                                            <td>Darwin</td>
+                                            <td>B+</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>1005</td>
+                                            <td>Euler</td>
+                                            <td>B</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <h5><strong>Table name: HCI</strong></h5>
+                                <br>
+                                <table class="table small table-striped table-success">
+                                    <thead>
+                                        <tr>
+                                            <th scope=" col">#</th>
+                                            <th scope="col">StudentID</th>
+                                            <th scope="col">StudentName</th>
+                                            <th scope="col">Grade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>1001</td>
+                                            <td>Aaron</td>
+                                            <td>A</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>1002</td>
+                                            <td>Bash</td>
+                                            <td>A-</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>1003</td>
+                                            <td>Claire</td>
+                                            <td>A+</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>1006</td>
+                                            <td>Fortran</td>
+                                            <td>C+</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>1007</td>
+                                            <td>Haskell</td>
+                                            <td>F</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <h5>To select the student IDs, names and the final grade in the DBMS course for students who
+                                    took the HCI course as well, we can execute the following query:</h5>
+                                <br>
+                                <h5 class="bg-light">SELECT * FROM DBMS WHERE StudentID IN (SELECT StudentID FROM HCI);
+                                </h5>
+                                <br>
+                                <h5>Executing this query will output the following table:</h5>
+                                <br>
+                                <table class="table small table-striped table-success">
+                                <thead>
+                                    <tr>
+                                        <th scope=" col">#</th>
+                                        <th scope="col">StudentID</th>
+                                        <th scope="col">StudentName</th>
+                                        <th scope="col">Grade</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>1001</td>
+                                            <td>Aaron</td>
+                                            <td>A+</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>1002</td>
+                                            <td>Bash</td>
+                                            <td>A</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>1003</td>
+                                            <td>Claire</td>
+                                            <td>A-</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h5>If we instead want to select the student IDs, names and the final grade in the
+                                    Database course for students who did not take the HCI course as well, we can execute the
+                                    following query:</h5>
+                                <br>
+                                <h5 class="bg-light">SELECT * FROM DBMS WHERE StudentID NOT IN (SELECT StudentID FROM
+                                    HCI);</h5>
+                                <br>
+                                <h5>Then, the following table will be outputted:</h5>
+                                <br>
+                                <table class="table small table-striped table-success">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">StudentID</th>
+                                            <th scope="col">StudentName</th>
+                                            <th scope="col">Grade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>1004</td>
+                                            <td>Darwin</td>
+                                            <td>B+</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>1005</td>
+                                            <td>Euler</td>
+                                            <td>B</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="list-group-item">
+                                    <div style="text-align:center;">
+                                        <orbit-reviewarea color="lime">
+                                            <orbit-prompt
+                                                question="Q1. What are the two operators used to nest queries?"
+                                                answer="IN, NOT IN.">
+                                            </orbit-prompt>
+                                        </orbit-reviewarea>
+                                        <hr>
+                                        <a href="{{ url_for('sql_pages.joinSQL') }}">
+                                            <button class="btn btn-outline-danger lift btn-xs" style="float:left" type="button">
+                                                <<
+                                            </button>
+                                        </a>
+                                        <a href="{{ url_for('sql_pages.groupByHavingSQL') }}">
+                                            <button class="btn btn-outline-success lift btn-xs" style="float:right" type="button"> 
+                                                >> 
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+{% endblock %}

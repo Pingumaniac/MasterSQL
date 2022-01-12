@@ -1,0 +1,347 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Import Orbit javascript library. For further info, check: https://docs.withorbit.com/ -->
+<script type="module" src="https://js.withorbit.com/orbit-web-component.js"></script>
+
+<!-- Page Content -->
+<section>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <div class="card shadow">
+                    <!-- Collapse -->
+                    <div class="collapse d-md-block" id="sidenavCollapse">
+                        <div class="card-header">
+                            <h4>Sections</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="card-list list">
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.createTableSQL') }}">Create Table</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.dropTableSQL') }}">Drop Table</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.insertDataSQL') }}">Insert Data</a></li>
+                                <li class="list-item active lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.selectDataSQL') }}">Select Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.updateDataSQL') }}">Update Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.deleteDataSQL') }}">Delete Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.foreignKeysSQL') }}">Foreign Keys</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.joinSQL') }}">Joining Tables</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.nestedQueriesSQL') }}">Nested Queries</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.groupByHavingSQL') }}">Grouping Rows</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h4>How could data from a table be selected in SQL?</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item">
+                                <h5>To select data from tables in SQL, we need to write a query in the following format:
+                                </h5>
+                                <br>
+                                <h5 class="bg-light">SELECT name_of_first_attribute_to_be_selected,
+                                    name_of_second_attribute_to_be_selected, ...
+                                    FROM name_of_table;</h5>
+                                <br>
+                                <h5>You can select all attributes from the table in SQL, by writing the query in this
+                                    format:</h5>
+                                <br>
+                                <h5 class="bg-light">SELECT * FROM name_of_table;</h5>
+                                <br>
+                                <h5>For instance, if you want to select all data stored in the 'SmartPhones' table from
+                                    the last example after the row for iPhone SE2 has been inserted,
+                                    you need to execute the following query:
+                                </h5>
+                                <br>
+                                <h5 class="bg-light">SELECT * FROM SmartPhones;</h5>
+                                <br>
+                                <h5>This will, in turn, return the following table:</h5>
+                                <br>
+                                <table class="table small table-striped table-success"">
+                                    <thead>
+                                        <tr>
+                                            <th scope=" col">#</th>
+                                            <th scope="col">Model_name</th>
+                                            <th scope="col">Manufacturer</th>
+                                            <th scope="col">Display_size</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>iPhone 11 Mini</td>
+                                            <td>Apple</td>
+                                            <td>5.4</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>iPhone 12 Mini</td>
+                                            <td>Apple</td>
+                                            <td>5.4</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>iPhone 13</td>
+                                            <td>Apple</td>
+                                            <td>6.1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>iPhone 13 Mini</td>
+                                            <td>Apple</td>
+                                            <td>5.4</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>iPhone 13 Pro</td>
+                                            <td>Apple</td>
+                                            <td>6.7</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">6</th>
+                                            <td>iPhone 13 Pro Max</td>
+                                            <td>Apple</td>
+                                            <td>6.1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">7</th>
+                                            <td>iPhone SE2</td>
+                                            <td>Apple</td>
+                                            <td>4.7</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h5>Note that the primary key of this table is Model_name, and hence the ordering has
+                                    been automatically done in terms of Model_name.</h5>
+                            </div>
+                            <div class="list-group-item">
+                                <h5>To select whether an element exists in the database, you can use the 'EXISTS' operator.
+                                </h5>
+                                <br>
+                                <h5>For example, to check whether the data for iPhone 13 is stored in the table above,
+                                    we can write the following query:</h5>
+                                <br>
+                                <h5 class="bg-light">SELECT EXISTS(SELECT Model_name FROM SmartPhones WHERE Model_name='iPhone 13') AS
+                                    Existence_of_iPhone_13;</h5>
+                                <br>
+                                <h5>This will return the following table.</h5>
+                                <br>
+                                <table class="table small table-striped table-success"">
+                                    <thead>
+                                        <tr>
+                                            <th scope=" col">#</th>
+                                            <th scope="col">Existence_of_iPhone_13</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>1</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <h5>Note that the 'EXISTS' operator:</h5>
+                                <ol>
+                                    <li>returns 1 when the corresponding element(s) outputted from the subquery exists
+                                        in the database.</li>
+                                    <li>returns 0 when the corresponding element(s) outputted from the subquery does not
+                                        exist in the database.</li>
+                                </ol>
+                                <br>
+                                <h5>If you try to check the existence of data for iPhone 14 is stored in the table
+                                    above, by executing the following query:</h5>
+                                <br>
+                                <h5 class="bg-light">SELECT EXISTS(SELECT Model_name FROM SmartPhones WHERE Model_name='iPhone 14') AS
+                                    Existence_of_iPhone_13;</h5>
+                                <br>
+                                <h5>Then the following table will be returned.</h5>
+                                <br>
+                                <table class="table small table-striped table-success"">
+                                    <thead>
+                                        <tr>
+                                            <th scope=" col">#</th>
+                                    <th scope="col">Existence_of_iPhone_14</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>0</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="list-group-item">
+                                <h5>To select distinct values of the attribute stored in the table, you need to add the
+                                    term 'DISTINCT' after 'SELECT' in the query.</h5>
+                                <br>
+                                <h5>For instance, to select distinct display sizes in the table above, we can execute
+                                    the following query:</h5>
+                                <br>
+                                <h5 class="bg-light">SELECT DISTINCT Display_size FROM SmartPhones;</h5>
+                                <br>
+                                <table class="table small table-striped table-success"">
+                                    <thead>
+                                        <tr>
+                                            <th scope=" col">#</th>
+                                            <th scope="col">Display_size</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>5.4</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>6.1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>6.7</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>4.7</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h5>You can also order the elements in either ascending or descending order by
+                                    using the "ORDER BY" keyword and "ASC" or "DESC" keyword, respectively.</h5>
+                                <br>
+                                <h5>For instance, to select distinct display sizes in the table above in ascending order
+                                    instead, we can execute the following query:</h5>
+                                <br>
+                                <h5 class="bg-light">SELECT DISTINCT Display_size FROM SmartPhones ORDER BY Display_size ASC;</h5>
+                                <br>
+                                <table class="table small table-striped table-success"">
+                                    <thead>
+                                        <tr>
+                                            <th scope=" col">#</th>
+                                            <th scope="col">Display_size</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>4.7</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>5.4</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>6.1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>6.7</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="list-group-item">
+                                <h5>You can also use the SQL built-in functions such as...</h5>
+                                <br>
+                                <ol>
+                                    <li>COUNT(): to find out the number of elements in the table</li>
+                                    <li>MIN(): to find out the minimum value of the attribute in the table</li>
+                                    <li>MAX(): to find out the maximum value of the attribute in the table</li>
+                                    <li>SUM(): to find out the sum of all values of the attribute in the table</li>
+                                    <lI>AVG(): to find out the average value of the attribute respectively.</lI>
+                                </ol>
+                                <br>
+                                <h5>For instance, we can count the number of smartphones with distinct display sizes by
+                                    running the following query:</h5>
+                                <br>
+                                <h5 class="bg-light">SELECT COUNT(DISTINCT Display_size) AS No_Of_SmartPhones_With_Distinct_Display_Size
+                                    FROM SmartPhones;</h5>
+                                <br>
+                                <table class="table small table-striped table-success"">
+                                    <thead>
+                                        <tr>
+                                            <th scope=" col">#</th>
+                                            <th scope="col">No_Of_SmartPhones_With_Distinct_Display_Size</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>4</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h5>Here note that it is possible to rename the attribute with an alias by employing the
+                                    'AS' command.</h5>
+                            </div>
+                            <div class="list-group-item">
+                                <div style="text-align:center;">
+                                    <orbit-reviewarea color="lime">
+                                        <orbit-prompt
+                                            question="Q1. What shall you type after 'SELECT' if you want to select all the attributes stored in the table?"
+                                            answer="*">
+                                        </orbit-prompt>
+                                        <orbit-prompt
+                                            question="Q2. What shall yout ype after 'SELECT' if you want to select only unique values (only select one for each duplicate values)?"
+                                            answer="DISTINCT">
+                                        </orbit-prompt>
+                                        <orbit-prompt
+                                            question="Q3. Which function in SQL shall you use to count the number of elements?"
+                                            answer="COUNT()">
+                                        </orbit-prompt>
+                                        <orbit-prompt
+                                            question="Q4. Which function in SQL shall you use to find out the minimum value of the attribute in the table?"
+                                            answer="MIN()">
+                                        </orbit-prompt>
+                                        <orbit-prompt
+                                            question="Q5. Which function in SQL shall you use to find out the maximum value of the attribute in the table?"
+                                            answer="MAX()">
+                                        </orbit-prompt>
+                                        <orbit-prompt
+                                            question="Q6. Which function in SQL shall you use to find out the sum of the values of the attribute in the table?"
+                                            answer="SUM()">
+                                        </orbit-prompt>
+                                        <orbit-prompt
+                                            question="Q7. Which function in SQL shall you use to find out the average of the values of the attribute in the table?"
+                                            answer="AVG()">
+                                        </orbit-prompt>
+                                    </orbit-reviewarea>
+                                    <hr>
+                                    <a href="{{ url_for('sql_pages.insertDataSQL') }}">
+                                        <button class="btn btn-outline-danger lift btn-xs" style="float:left" type="button">
+                                            <<
+                                        </button>
+                                    </a>
+                                    <a href="{{ url_for('sql_pages.updateDataSQL') }}">
+                                        <button class="btn btn-outline-success lift btn-xs" style="float:right" type="button"> 
+                                            >> 
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

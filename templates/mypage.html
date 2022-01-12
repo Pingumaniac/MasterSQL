@@ -1,0 +1,268 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Import Iconify SVG framework -->
+<script src="https://code.iconify.design/2/2.0.3/iconify.min.js"></script>
+
+<!-- Page Content -->
+<section>
+  <div class="container">
+    <br>
+    <br>
+    <br>
+    <div class="row">
+      <div class="container">
+        <div class="card shadow">
+          <div class="card-header">
+            <h3>General</h3>
+          </div>
+          <div class="card-body">
+            <div class="list-group list-group-flush">
+              <div class="list-group-item">
+                <h5>Your profile picture:
+                  <a style="float: right" href="{{ url_for('my_pages.changeProfilePicture') }}">
+                    <button type='button' class="btn btn-outline-success btn-xs">
+                      <span class="iconify" data-icon="feather:edit"></span>
+                    </button>
+                  </a>
+                </h5>
+
+                {% if accountPicture != None %}
+                <br>
+                <form method='POST' , action="{{ url_for('my_pages.mypage') }}">
+                  <div class="avatar avatar-xl">
+                    <img class="avatar-img rounded" src="{{ accountPicture }}" alt="..." />
+                  </div>
+                  <button type="submit" class="btn btn-outline-danger btn-xs" style="float: right"
+                    value="{{ accountPicture }}" name="deletePicture" id="deletePicture">
+                    <span class="iconify" data-icon="fa-regular:trash-alt"></span>
+                  </button>
+                </form>
+                {% endif %}
+
+                {% if accountPicture == None %}
+                <h5 class="small text-success">You have not set your profile picture yet.</h5>
+                {% endif %}
+              </div>
+
+              <div class="list-group-item">
+                <h5>Your username:</h5>
+                <h5 class="small text-success">{{ userName }}</h5>
+              </div>
+
+              <div class="list-group-item">
+                <h5>
+                  Your password:
+                  <a style="float: right" href="{{ url_for('my_pages.changePassword') }}">
+                    <button type='button' class="btn btn-outline-success btn-xs">
+                      <span class="iconify" data-icon="feather:edit"></span>
+                    </button>
+                  </a>
+                </h5>
+                <h5 class="small text-success">*******</h5>
+              </div>
+
+              <div class="list-group-item">
+                <h5>
+                  Your full name:
+                  <a style="float: right" href="{{ url_for('my_pages.changeFullName') }}">
+                    <button type='button' class="btn btn-outline-success btn-xs">
+                      <span class="iconify" data-icon="feather:edit"></span>
+                    </button>
+                  </a>
+                </h5>
+                <h5 class="small text-success">{{ fullName }}</h5>
+              </div>
+
+              <div class="list-group-item">
+                <h5>
+                  Your email address:
+                  <a style="float: right" href="{{ url_for('my_pages.changeEmail') }}">
+                    <button type='button' class="btn btn-outline-success btn-xs">
+                      <span class="iconify" data-icon="feather:edit"></span>
+                    </button>
+                  </a>
+                </h5>
+                <h5 class="small text-success">{{ accountEmail }}</h5>
+              </div>
+
+              <div class="list-group-item">
+                <h5>
+                  Your phone number:
+                  <a style="float: right" href="{{ url_for('my_pages.changePhone') }}">
+                    <button type='button' class="btn btn-outline-success btn-xs">
+                      <span class="iconify" data-icon="feather:edit"></span>
+                    </button>
+                  </a>
+                </h5>
+                <h5 class="small text-success">{{ accountPhoneNumber }}</h5>
+              </div>
+
+              {% if adminStatus == 1 %}
+              <div class="list-group-item">
+                <h5>
+                  Your job title:
+                  <a style="float: right" href="{{ url_for('my_pages.changeJob') }}">
+                    <button type='button' class="btn btn-outline-success btn-xs">
+                      <span class="iconify" data-icon="feather:edit"></span>
+                    </button>
+                  </a>
+                </h5>
+                <h5 class="small text-success">{{ accountJobTitle }}</h5>
+              </div>
+              {% endif %}
+
+              <div class="list-group-item">
+                <h5>Your level 1 test history:</h5>
+                {% if test1Table == () %}
+                <h5 class="small text-danger">You have not taken level 1 test at all.</h5>
+                {% else %}
+                <ol class="small text-success">
+                  {% for test1Data in test1Table %}
+                  <li>
+                    <form method='POST' , action="{{ url_for('my_pages.mypage') }}">
+                    Total score: {{ test1Data[0] }} (Test taken at: {{ test1Data[11] }})
+                    <button type="submit" class="btn btn-outline-danger btn-xs" style="float: right"
+                      value="{{ test1Data[11] }}" name="deleteDistinctTest1Score" id="deleteDistinctTest1Score">
+                      <span class="iconify" data-icon="fa-regular:trash-alt"></span>
+                    </button>
+                    </form>
+                    <table class="table small">
+                      <thead>
+                        <tr>
+                          <th scope="col" class="text-success">Question Number</th>
+                          {% for i in range(1, 11) %}
+                          {% if test1Data[i] == 1 %}
+                          <th scope="col" class="text-success">{{ i }}</th>
+                          {% else %}
+                          <th scope="col" class="text-danger">{{ i }}</th>
+                          {% endif %}
+                          {% endfor %}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row" class="text-success">Mark</th>
+                          {% for i in range(1, 11) %}
+                          {% if test1Data[i] == 1 %}
+                          <td class="text-success">{{ test1Data[i] }}</td>
+                          {% else %}
+                          <td class="text-danger">{{ test1Data[i] }}</td>
+                          {% endif %}
+                          {% endfor %}
+                        </tr>
+                      </tbody>
+                    </table>
+                  </li>
+                  {% endfor %}
+                </ol>
+                {% endif %}
+                </ol>
+              </div>
+
+              <div class="list-group-item">
+                <h5>Your level 2 test history:</h5>
+                {% if test2Table == () %}
+                <h5 class="small text-danger">You have not taken level 2 test at all.</h5>
+                {% else %}
+                <ol class="small text-success">
+                  {% for test2Data in test2Table %}
+                  <li>
+                    <form method='POST' , action="{{ url_for('my_pages.mypage') }}">
+                    Total score: {{ test2Data[0] }} (Test taken at: {{ test2Data[11] }})
+                    <button type="submit" class="btn btn-outline-danger btn-xs" style="float: right"
+                      value="{{ test2Data[11] }}" name="deleteDistinctTest2Score" id="deleteDistinctTest2Score">
+                      <span class="iconify" data-icon="fa-regular:trash-alt"></span>
+                    </button>
+                    </form>
+                    <table class="table small">
+                      <thead>
+                        <tr>
+                          <th scope="col" class="text-success">Question Number</th>
+                          {% for i in range(1, 11) %}
+                          {% if test2Data[i] == 1 %}
+                          <th scope="col" class="text-success">{{ i }}</th>
+                          {% else %}
+                          <th scope="col" class="text-danger">{{ i }}</th>
+                          {% endif %}
+                          {% endfor %}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row" class="text-success">Mark</th>
+                          {% for i in range(1, 11) %}
+                          {% if test2Data[i] == 1 %}
+                          <td class="text-success">{{ test2Data[i] }}</td>
+                          {% else %}
+                          <td class="text-danger">{{ test2Data[i] }}</td>
+                          {% endif %}
+                          {% endfor %}
+                        </tr>
+                      </tbody>
+                    </table>
+                  </li>
+                  <br>
+                  {% endfor %}
+                </ol>
+                {% endif %}
+              </div>
+
+              <div class="list-group-item">
+                <h5>Your level 3 test history:</h5>
+                {% if test3Table == () %}
+                <h5 class="small text-danger">You have not taken level 3 test at all.</h5>
+                {% else %}
+                <ol class="small text-success">
+                  {% for test3Data in test3Table %}
+                  <li>
+                    <form method='POST' , action="{{ url_for('my_pages.mypage') }}">
+                    Total score: {{ test3Data[0] }} (Test taken at: {{ test3Data[6] }})
+                    <button type="submit" class="btn btn-outline-danger btn-xs" style="float: right"
+                      value="{{ test3Data[6] }}" name="deleteDistinctTest3Score" id="deleteDistinctTest3Score">
+                      <span class="iconify" data-icon="fa-regular:trash-alt"></span>
+                    </button>
+                    </form>
+                    <table class="table small">
+                      <thead>
+                        <tr>
+                          <th scope="col" class="text-success">Question Number</th>
+                          {% for i in range(1, 6) %}
+                          {% if test3Data[i] == 1 %}
+                          <th scope="col" class="text-success">{{ i }}</th>
+                          {% else %}
+                          <th scope="col" class="text-danger">{{ i }}</th>
+                          {% endif %}
+                          {% endfor %}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row" class="text-success">Mark</th>
+                          {% for i in range(1, 6) %}
+                          {% if test3Data[i] == 1 %}
+                          <td class="text-success">{{ test3Data[i] }}</td>
+                          {% else %}
+                          <td class="text-danger">{{ test3Data[i] }}</td>
+                          {% endif %}
+                          {% endfor %}
+                        </tr>
+                      </tbody>
+                    </table>
+                  </li>
+                  {% endfor %}
+                </ol>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <h5 class="small text-gray-700" style="float:right;">
+          If you do not want to use MasterSQL anymore, you may
+          <a class="text-danger" href="{{ url_for('my_pages.deleteAccount') }}">delete your account permanently</a>.
+        </h5>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Import Orbit javascript library. For further info, check: https://docs.withorbit.com/ -->
+<script type="module" src="https://js.withorbit.com/orbit-web-component.js"></script>
+
+<!-- Page Content -->
+<section>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <div class="card shadow">
+                    <!-- Collapse -->
+                    <div class="collapse d-md-block" id="sidenavCollapse">
+                        <div class="card-header">
+                            <h4>Sections</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="card-list list">
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.createTableSQL') }}">Create Table</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.dropTableSQL') }}">Drop Table</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.insertDataSQL') }}">Insert Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.selectDataSQL') }}">Select Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.updateDataSQL') }}">Update Data</a></li>
+                                <li class="list-item active lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.deleteDataSQL') }}">Delete Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.foreignKeysSQL') }}">Foreign Keys</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.joinSQL') }}">Joining Tables</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.nestedQueriesSQL') }}">Nested Queries</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.groupByHavingSQL') }}">Grouping Rows</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h4>How could data from a table be deleted in SQL?</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item">
+                                <h5>To delete data in the table in SQL, we need to write a query in the following
+                                    format:</h5>
+                                <br>
+                                <h5 class="bg-light">DELETE FROM (Write the table name here) WHERE condition;</h5>
+                                <br>
+                                <h5>Here note that the WHERE clause is needed unless you want to delete all the rows in the
+                                    table.</h5>
+                                <br>
+                                <h5>For example, assume a table named "Current_iPads," which contains data
+                                    about the iPads in which Apple is currently selling.</h5>
+                                <br>
+                                <h5>When executing the following query:</h5>
+                                <br>
+                                <h5 class="bg-light">SELECT * FROM Current_iPads ORDER BY Display_size DESC;</h5>
+                                <br>
+                                <h5>The following table will be popped up.</h5>
+                                <br>
+                                <table class="table small table-striped table-success"">
+                                    <thead>
+                                        <tr>
+                                            <th scope=" col">#</th>
+                                            <th scope="col">Model_name</th>
+                                            <th scope="col">Manufacturer</th>
+                                            <th scope="col">Display_size</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>iPad Pro 12.9 (5th generation)</td>
+                                            <td>Apple</td>
+                                            <td>12.9</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>iPad Pro 11 (3th generation)</td>
+                                            <td>Apple</td>
+                                            <td>11</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>iPad Air (4th generation)</td>
+                                            <td>Apple</td>
+                                            <td>10.9</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>iPad (9th generation)</td>
+                                            <td>Apple</td>
+                                            <td>10.2</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>iPad mini (6th generation)</td>
+                                            <td>Apple</td>
+                                            <td>8.3</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">6</th>
+                                            <td>iPad mini (5th generation)</td>
+                                            <td>Apple</td>
+                                            <td>7.9</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <h5>Note that the iPad mini (5th generation) is currently discontinued. We can execute the
+                                    following query to update the table:</h5>
+                                <br>
+                                <h5 class="bg-light">DELETE FROM Current_iPads WHERE Model_name = 'iPad mini (5th generation)';</h5>
+                                <br>
+                                <h5>When executing the selection query again, the new table will be:</h5>
+                                <br>
+                                <table class="table small table-striped table-success"">
+                                    <thead>
+                                        <tr>
+                                            <th scope=" col">#</th>
+                                            <th scope="col">Model_name</th>
+                                            <th scope="col">Manufacturer</th>
+                                            <th scope="col">Display_size</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>iPad Pro 12.9 (5th generation)</td>
+                                            <td>Apple</td>
+                                            <td>12.9</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>iPad Pro 11 (3th generation)</td>
+                                            <td>Apple</td>
+                                            <td>11</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>iPad Air (4th generation)</td>
+                                            <td>Apple</td>
+                                            <td>10.9</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>iPad (9th generation)</td>
+                                            <td>Apple</td>
+                                            <td>10.2</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>iPad mini (6th generation)</td>
+                                            <td>Apple</td>
+                                            <td>8.3</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="list-group-item">
+                                <orbit-reviewarea color="lime">
+                                    <orbit-prompt
+                                        question="Q1. What will happen if you omit WHERE clause when deleting data from the table in SQL?"
+                                        answer="All the rows in the table will be deleted..">
+                                    </orbit-prompt>
+                                </orbit-reviewarea>
+                                <hr>
+                                <a href="{{ url_for('sql_pages.updateDataSQL') }}">
+                                    <button class="btn btn-outline-danger lift btn-xs" style="float:left" type="button">
+                                        <<
+                                    </button>
+                                </a>
+                                <a href="{{ url_for('sql_pages.foreignKeysSQL') }}">
+                                    <button class="btn btn-outline-success lift btn-xs" style="float:right" type="button"> 
+                                         >> 
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

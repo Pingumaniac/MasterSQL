@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Import Orbit javascript library. For further info, check: https://docs.withorbit.com/ -->
+<script type="module" src="https://js.withorbit.com/orbit-web-component.js"></script>
+
+<!-- Page Content -->
+<section>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <div class="card shadow">
+                    <div class="collapse d-md-block" id="sidenavCollapse">
+                        <div class="card-header">
+                            <h4>Sections</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="card-list list">
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.createTableSQL') }}">Create Table</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.dropTableSQL') }}">Drop Table</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.insertDataSQL') }}">Insert Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.selectDataSQL') }}">Select Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.updateDataSQL') }}">Update Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.deleteDataSQL') }}">Delete Data</a></li>
+                                <li class="list-item active lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.foreignKeysSQL') }}">Foreign Keys</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.joinSQL') }}">Joining Tables</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.nestedQueriesSQL') }}">Nested Queries</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.groupByHavingSQL') }}">Grouping Rows</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h4>What is a foreign key constraint in SQL?</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item">
+                                <h5>A foreign key is a set of attributes in one (child) table that refers to another
+                                    attribute from another (parent) table.</h5>
+                                <br>
+                                <h5>Note that the child table's foreign key shall correspond to the parent table's
+                                    primary key.</h5>
+                                <br>
+                                <h5>A case in point, the foreign key constraint can be defined as follows:</h5>
+                                <br>
+                                <h5 class="bg-light">CREATE TABLE IF NOT EXISTS Consumer (
+                                    <br>
+                                    consumerID VARCHAR(256) NOT NULL,
+                                    <br>
+                                    consumerFullName VARCHAR(256) NOT NULL,
+                                    <br>
+                                    PRIMARY KEY (consumerID)
+                                    <br>
+                                    );
+                                </h5>
+                                <br>
+                                <h5 class="bg-light">CREATE TABLE IF NOT EXISTS Product (
+                                    <br>
+                                    productID VARCHAR(256) NOT NULL,
+                                    <br>
+                                    productName VARCHAR(256) NOT NULL,
+                                    <br>
+                                    PRIMARY KEY (productID)
+                                    <br>
+                                    );
+                                </h5>
+                                <br>
+                                <h5 class="bg-light">CREATE TABLE IF NOT EXISTS Purchased (
+                                    <br>
+                                    consumerID VARCHAR(256) NOT NULL,
+                                    <br>
+                                    productID VARCHAR(256) NOT NULL,
+                                    <br>
+                                    PRIMARY KEY (consumerID, productID),
+                                    <br>
+                                    FOREIGN KEY (consumerID) REFERENCES Consumer(consumerID),
+                                    <br>
+                                    FOREIGN KEY (productID) REFERENCES Product(productID)
+                                    <br>
+                                    );
+                                </h5>
+                                <br>
+                                <h5>Notice that the 'Purchased' table is a child table that has'Consumer' and 
+                                    'Product' tables as its parent tables.</h5>
+                            </div>
+                            <div class="list-group-item">
+                                <orbit-reviewarea color="lime">
+                                    <orbit-prompt question="Q1. What is the purpose of foreign key constraints?"
+                                        answer="To provide referential integrity.">
+                                    </orbit-prompt>
+                                </orbit-reviewarea>
+                                <hr>
+                                <a href="{{ url_for('sql_pages.deleteDataSQL') }}">
+                                    <button class="btn btn-outline-danger lift btn-xs" style="float:left" type="button">
+                                        <<
+                                    </button>
+                                </a>
+                                <a href="{{ url_for('sql_pages.joinSQL') }}">
+                                    <button class="btn btn-outline-success lift btn-xs" style="float:right" type="button"> 
+                                         >> 
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

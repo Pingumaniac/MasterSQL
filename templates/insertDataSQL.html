@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Import Orbit javascript library. For further info, check: https://docs.withorbit.com/ -->
+<script type="module" src="https://js.withorbit.com/orbit-web-component.js"></script>
+
+<!-- Page Content -->
+<section>
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <div class="card shadow">
+                    <!-- Collapse -->
+                    <div class="collapse d-md-block" id="sidenavCollapse">
+                        <div class="card-header">
+                            <h4>Sections</h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="card-list list">
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.createTableSQL') }}">Create Table</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.dropTableSQL') }}">Drop Table</a></li>
+                                <li class="list-item active lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.insertDataSQL') }}">Insert Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.selectDataSQL') }}">Select Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.updateDataSQL') }}">Update Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.deleteDataSQL') }}">Delete Data</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.foreignKeysSQL') }}">Foreign Keys</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.joinSQL') }}">Joining Tables</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.nestedQueriesSQL') }}">Nested Queries</a></li>
+                                <li class="list-item lift"><a class="list-link text-reset"
+                                        href="{{ url_for('sql_pages.groupByHavingSQL') }}">Grouping Rows</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h4>How could we insert data into a table in SQL</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <div class="list-group-item">
+                                <h5>There are two ways to insert data into a table.</h5>
+                                <br>
+                                <h5>One way is to specify all the names of the attributes for the values you are going
+                                    to insert into the table.</h5>
+                                <br>
+                                <h5>In this case, you can insert data into the table in the following format:</h5>
+                                <br>
+                                <h5 class="bg-light">INSERT INTO (Write the table name here) (name_of_first_attribute,
+                                    name_of_second_attribute, name_of_third_attribute, ...)
+                                    VALUES (value_for_first_attribute, value_for_second_attribute,
+                                    value_for_third_attribute, ...);</h5>
+                                <br>
+                                <h5>If you are going to insert values for all the attributes, then you can instead
+                                    insert data into the table in this format:</h5>
+                                <br>
+                                <h5 class="bg-light">INSERT INTO (Write the table name here)
+                                    VALUES (value_for_first_attribute, value_for_second_attribute,
+                                    value_for_third_attribute, ..., value_for_last_attribute);</h5>
+                                <br>
+                                <h5>A case in point, assume that there is a table named 'SmartPhones' with three
+                                    attributes: Model_name, Manufacturer, Display_size.</h5>
+                                <br>
+                                <h5>When executing the following query:</h5>
+                                <br>
+                                <h5 class="bg-light">SELECT * FROM SmartPhones ORDER BY Display_size DESC;</h5>
+                                <br>
+                                <h5>The following table will be popped up.</h5>
+                                <br>
+                                <table class="table small table-striped table-success">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Model_name</th>
+                                            <th scope="col">Manufacturer</th>
+                                            <th scope="col">Display_size</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>iPhone 13 Pro Max</td>
+                                            <td>Apple</td>
+                                            <td>6.7</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>iPhone 13 Pro</td>
+                                            <td>Apple</td>
+                                            <td>6.1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>iPhone 13</td>
+                                            <td>Apple</td>
+                                            <td>6.1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>iPhone 13 Mini</td>
+                                            <td>Apple</td>
+                                            <td>5.4</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>iPhone 12 Mini</td>
+                                            <td>Apple</td>
+                                            <td>5.4</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">6</th>
+                                            <td>iPhone 11 Mini</td>
+                                            <td>Apple</td>
+                                            <td>5.4</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <h5>If you want to insert a row in the table about iPhone SE2 which ismanufactured by
+                                    Apple and has a display size of 4.7 (inches),
+                                    then you can write the insert query in either two ways:
+                                </h5>
+                                <br>
+                                <ol>
+                                    <li class="bg-light">INSERT INTO SmartPhones (Model_name, Manufacturer, Display_size) VALUES ('iPhone
+                                        SE2', 'Apple', 4.7);</li>
+                                    <li class="bg-light">INSERT INTO SmartPhones VALUES ('iPhone SE2', 'Apple', 4.7);</li>
+                                </ol>
+                                <br>
+                                <h5>If you execute the selection query again, the table will contain another row with
+                                    data about iPhone SE2.</h5>
+                                <br>
+                                <table class="table small table-striped table-success">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Model_name</th>
+                                            <th scope="col">Manufacturer</th>
+                                            <th scope="col">Display_size</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>iPhone 13 Pro Max</td>
+                                            <td>Apple</td>
+                                            <td>6.7</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>iPhone 13 Pro</td>
+                                            <td>Apple</td>
+                                            <td>6.1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>iPhone 13</td>
+                                            <td>Apple</td>
+                                            <td>6.1</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>iPhone 13 Mini</td>
+                                            <td>Apple</td>
+                                            <td>5.4</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>iPhone 12 Mini</td>
+                                            <td>Apple</td>
+                                            <td>5.4</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">6</th>
+                                            <td>iPhone 11 Mini</td>
+                                            <td>Apple</td>
+                                            <td>5.4</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">7</th>
+                                            <td>iPhone SE2</td>
+                                            <td>Apple</td>
+                                            <td>4.7</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="list-group-item">
+                                <orbit-reviewarea color="lime">
+                                    <orbit-prompt
+                                        question="Q1a. What is a necessary condition for being OK to not specify the name of the attribute in an insert query?"
+                                        answer="If the query inserts all the values for each attribute, it is OK to not specify the name of the attribute.">
+                                    </orbit-prompt>
+                                    <orbit-prompt question="Q1b. What is still necessary for this case?"
+                                        answer="The order of the values shall correspond to the order of the attributes in the table.">
+                                    </orbit-prompt>
+                                </orbit-reviewarea>
+                                <hr>
+                                <a href="{{ url_for('sql_pages.dropTableSQL') }}">
+                                    <button class="btn btn-outline-danger lift btn-xs" style="float:left" type="button">
+                                        <<
+                                    </button>
+                                </a>
+                                <a href="{{ url_for('sql_pages.selectDataSQL') }}">
+                                    <button class="btn btn-outline-success lift btn-xs" style="float:right" type="button"> 
+                                        >> 
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
