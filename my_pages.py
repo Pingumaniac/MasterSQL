@@ -52,9 +52,7 @@ def mypage():
         deleteDistinctTest2Score = request.form.get('deleteDistinctTest2Score')
         deleteDistinctTest3Score = request.form.get('deleteDistinctTest3Score')
 
-        print(request.form)
-
-        if isDeletePicture != None:
+        if deletePicture != None:
             # Differentiated the case as the profile picture URL is stored in different tables
             # Case: the client is a user
             if g.adminStatus == 0:
