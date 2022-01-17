@@ -224,8 +224,12 @@ class DB():
             userTableColumns = [value[0] for value in self.cursor.description]
             userAnswer = self.cursor.fetchall()
         except:
-            userAnswer = 'Error'
+            userAnswer = None
             userTableColumns = None
+            isIdentical = False
+            return json.dumps({'userTable' : userAnswer, 'userTableColumns' : userTableColumns, 
+                           'sampleTable' : sampleAnswer, 'sampleTableColumns' : sampleTableColumns,
+                           'isIdentical' : isIdentical})
         
         isIdentical = True
         if set(userTableColumns) != set(sampleTableColumns):
