@@ -48,8 +48,11 @@ window.onload = () => {
                 else {
                     whichQuestionsCorrect.push(0);
                 }
-                var html = htmlForTableGenerator(answer['userTableColumns'], answer['userTable'], questionDOM.value);
-                partDOM.innerHTML += html;
+                // Append table if userTable is not null
+                if (answer['userTable'] != null) {
+                    var html = htmlForTableGenerator(answer['userTableColumns'], answer['userTable'], questionDOM.value);
+                    partDOM.innerHTML += html;
+                }
             }
         }
         return whichQuestionsCorrect;
@@ -93,12 +96,9 @@ window.onload = () => {
         }
         var msg = "Your score is " + score.toString() + ".";
         alert(msg);
-        console.log(marked);
-        console.log("Total score: ", score);
 
         scoresInJSObject = {"markForEach": marked, "totalScore": score};
-        scoresInJSON = JSON.stringify(scoresInJSObject) 
-        console.log(scoresInJSON)
+        scoresInJSON = JSON.stringify(scoresInJSObject);
 
         let scoreSubmitted = await postData();
         console.log(scoreSubmitted);
